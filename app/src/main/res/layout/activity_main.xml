@@ -1,15 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context="rezkyaulia.com.robusta_t1.ui.main.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-         />
+  <!--  <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="rezkyaulia.com.robusta_t1.ui.main.MainViewModel" />
 
-</FrameLayout>
+    </data>-->
+
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:animateLayoutChanges="true">
+
+
+        <RelativeLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            >
+
+            <android.support.design.widget.CoordinatorLayout
+                android:id="@+id/coordinatorLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/background_material_white"
+                android:theme="@style/AppTheme"
+                tools:context=".ui.main.MainActivity">
+
+                <android.support.design.widget.AppBarLayout
+                    android:id="@+id/appBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:elevation="4dp">
+
+                    <android.support.v7.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:background="@color/background_material_white"
+                        android:layout_height="?android:attr/actionBarSize">
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout_toolbar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/imageView_back"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:tint="@color/icon"
+                                android:paddingRight="@dimen/margin_normal"
+                                android:src="@drawable/ic_arrow_back"
+                                android:visibility="gone"/>
+
+                            <com.app.infideap.stylishwidget.view.ATextView
+                                android:id="@+id/textView_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:layout_centerVertical="true"
+                                android:text="@string/app_name"
+                                android:textAppearance="@style/TextStyle.Small"
+                                android:textColor="@color/primaryTextColor" />
+
+                        </LinearLayout>
+                    </android.support.v7.widget.Toolbar>
+
+                </android.support.design.widget.AppBarLayout>
+
+                <FrameLayout
+                    android:id="@+id/screen_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+            </android.support.design.widget.CoordinatorLayout>
+
+        </RelativeLayout>
+
+
+        <android.support.design.widget.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:fitsSystemWindows="false"
+            app:elevation="0dp">
+
+        </android.support.design.widget.NavigationView>
+
+    </android.support.v4.widget.DrawerLayout>
+</layout>
+

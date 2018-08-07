@@ -98,7 +98,7 @@ dependencies {
 
     //architecture component
     implementation "android.arch.lifecycle:extensions:$rootProject.arcCompVersion"
-    implementation "android.arch.work:work-runtime:1.0.0-alpha04"
+    implementation "android.arch.work:work-runtime:1.0.0-alpha06"
 
     //test
     testImplementation "junit:junit:$rootProject.junitVersion"

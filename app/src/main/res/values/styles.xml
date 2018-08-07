@@ -1,3 +1,4 @@
+
 <resources>
 
     <!-- Base application theme. -->
@@ -6,6 +7,30 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:colorBackground">@color/background_material_white</item>
+        <item name="android:colorForeground">@color/foreground_light</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="AppTheme.NavigationView">
+        <!--<item name="android:listDivider">@color/colorGrey_600</item>-->
+        <item name="android:textColorSecondary">@color/colorGrey_400</item>
+    </style>
+    <style name="dialog" parent="android:Theme.DeviceDefault.Dialog.NoActionBar.MinWidth" >
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+    <style name="dialog.light" parent="android:Theme.DeviceDefault.Light.Dialog.NoActionBar.MinWidth" >
+        <item name="android:windowIsFloating">true</item>
     </style>
 
 </resources>

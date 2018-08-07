@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">bamms-project</string>
+    <string name="permissionrequestmessage">Need to activate several permission in order to use this app</string>
+    <string name="got_it">Got it</string>
+
 </resources>
