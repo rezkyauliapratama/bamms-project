@@ -2,5 +2,12 @@
     <string name="app_name">bamms-project</string>
     <string name="permissionrequestmessage">Need to activate several permission in order to use this app</string>
     <string name="got_it">Got it</string>
+    <string name="title">Title</string>
+    <string name="hint_totalbalance">Rp. 13.000.000</string>
+    <string name="total_balance">Total balance</string>
+    <string name="cardname">Cardname</string>
+    <string name="status">Status</string>
+    <string name="balance">Balance</string>
+    <string name="transaction">Transaction</string>
 
 </resources>

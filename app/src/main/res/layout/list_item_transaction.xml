@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_background"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/margin_large"
+    android:paddingRight="@dimen/margin_large"
+    android:paddingBottom="@dimen/margin_normal"
+    android:paddingTop="@dimen/margin_normal"
+    >
+
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:layout_weight="1">
+        <com.app.infideap.stylishwidget.view.ATextView
+            android:id="@+id/tv_transactionName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack_1000"
+            android:text="@string/transaction"
+            android:textAppearance="@style/TextStyle.Medium"/>
+        <com.app.infideap.stylishwidget.view.ATextView
+            android:id="@+id/tv_transactionDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/status"
+            android:textAppearance="@style/TextStyle.Small"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_vertical|end"
+        android:layout_weight="1">
+        <com.app.infideap.stylishwidget.view.ATextView
+            android:id="@+id/tv_transactionAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack_1000"
+            android:text="@string/balance"
+            android:textAppearance="@style/TextStyle.Medium"/>
+        <com.app.infideap.stylishwidget.view.ATextView
+            android:id="@+id/tv_cardName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cardname"
+            android:textAppearance="@style/TextStyle.Small"/>
+    </LinearLayout>
+
+
+</LinearLayout>
