@@ -1,0 +1,73 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.1.3'
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+//        classpath 'com.google.gms:google-services:3.2.1'
+    }
+}
+
+ext {
+    // Sdk and tools
+    minSdkVersion = 16
+    targetSdkVersion = 27
+    compileSdkVersion = 27
+
+    //firebase
+    firebaseVersion = '16.0.1'
+    firebaseMessageVersion = '17.1.0'
+    firebaseAuthVersion = '16.0.2'
+    gmsVersion = '15.0.1'
+
+    // App dependencies
+    supportLibraryVersion = '27.1.1'
+    gsonVersion = '2.8.2'
+    glideVersion = '3.8.0'
+    greendaoVersion = '3.2.2'
+    butterknifeVersion = '8.8.1'
+    commonsIoVersion = '2.4'
+    drawerVersion = '0.0.2'
+    stylishwidgetVersion = '1.3.9'
+    textdrawableVersion = '1.0.1'
+    lottieVersion = '2.2.0'
+    dagger2Version = '2.14.1'
+    markdownVersion = '0.16.0'
+    dateTimePicker = '3.6.1'
+    jobDispatcherVersion = '0.8.5'
+
+    rxjava2Version = '2.1.8'
+    rxandroidVersion = '2.0.1'
+    annotationJava5Version = '15.0'
+    okhttpVersion = '3.9.1'
+    secureprefVersion = '0.1.4'
+    timberVersion = '4.7.0'
+    lifecycle = '1.1.0'
+    arcCompVersion = '1.1.1'
+
+    //Test dependencies
+    junitVersion = '4.12'
+    espressoVersion = '3.0.2'
+    mockitoVersion = '2.7.1'
+
+    multiDex = '1.0.3'
+}
+
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+}
