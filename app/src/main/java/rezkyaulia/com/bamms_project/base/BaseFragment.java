@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.Objects;
+
 import javax.inject.Inject;
 
 import rezkyaulia.com.bamms_project.di.activity.ActivityComponent;
@@ -75,7 +77,7 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
         if (mActivityComponent == null) {
             mActivityComponent = DaggerActivityComponent.builder()
                     .activityModule(new ActivityModule(getActivity()))
-                    .applicationComponent(BaseApplication.get(getContext()).getApplicationComponent())
+                    .applicationComponent(BaseApplication.get(Objects.requireNonNull(getContext())).getApplicationComponent())
                     .build();
         }
         return mActivityComponent;

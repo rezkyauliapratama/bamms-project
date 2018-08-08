@@ -1,4 +1,4 @@
-package rezkyaulia.com.bamms_project;
+package rezkyaulia.com.bamms_project.ui;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.graphics.Color;
@@ -9,16 +9,14 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.ListFragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateInterpolator;
 import android.widget.LinearLayout;
 
 import com.app.infideap.stylishwidget.view.ATextView;
@@ -26,10 +24,11 @@ import com.app.infideap.stylishwidget.view.ATextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import rezkyaulia.com.bamms_project.BR;
+import rezkyaulia.com.bamms_project.R;
 import rezkyaulia.com.bamms_project.base.BaseActivity;
-import rezkyaulia.com.bamms_project.base.BaseFragment;
 import rezkyaulia.com.bamms_project.databinding.ActivityMainBinding;
-import rezkyaulia.com.bamms_project.di.viewmodel.ViewModelFactory;
+import rezkyaulia.com.bamms_project.ui.main.fragment.ListCardFragment;
 import rezkyaulia.com.bamms_project.view.EndDrawerToggle;
 import timber.log.Timber;
 
@@ -65,6 +64,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding,MainViewModel
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         fragments = new ArrayList<>();
         fragment = new Fragment();
 
@@ -72,6 +72,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding,MainViewModel
 
         initViewPager();
         initTab();
+
+
 
     }
 
@@ -192,7 +194,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding,MainViewModel
 
     private void initViewPager() {
         Timber.e("INITVIEWPAGER");
-        fragments.add(new Fragment());
+        fragments.add(ListCardFragment.newInstance(null));
         fragments.add(new Fragment());
 
         fragment = fragments.get(0);

@@ -38,7 +38,7 @@ public class BankAccountTbl {
 
     @Property(nameInDb = "AccountBalance")
     @SerializedName("account_balance")
-    private String accountBalance;
+    private int accountBalance;
 
 
     @Property(nameInDb = "Description")
@@ -58,9 +58,9 @@ private transient DaoSession daoSession;
 @Generated(hash = 261602099)
 private transient BankAccountTblDao myDao;
 
-@Generated(hash = 277947082)
+@Generated(hash = 316185379)
 public BankAccountTbl(Long accountId, Long userId, Long type,
-        String acountNumber, String accountBalance, String description) {
+        String acountNumber, int accountBalance, String description) {
     this.accountId = accountId;
     this.userId = userId;
     this.type = type;
@@ -105,11 +105,11 @@ public void setAcountNumber(String acountNumber) {
     this.acountNumber = acountNumber;
 }
 
-public String getAccountBalance() {
+public int getAccountBalance() {
     return this.accountBalance;
 }
 
-public void setAccountBalance(String accountBalance) {
+public void setAccountBalance(int accountBalance) {
     this.accountBalance = accountBalance;
 }
 
