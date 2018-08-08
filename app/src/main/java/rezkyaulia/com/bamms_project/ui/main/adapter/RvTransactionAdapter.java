@@ -1,11 +1,15 @@
 package rezkyaulia.com.bamms_project.ui.main.adapter;
 
+import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.Observer;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import rezkyaulia.com.bamms_project.R;
@@ -17,18 +21,28 @@ public class RvTransactionAdapter extends RecyclerView.Adapter<RvTransactionAdap
 
 
     private MainViewModel viewModel;
-    private List<TransactionTbl> list;
+    private final LifecycleOwner lifecycleOwner;
+    private List<TransactionTbl> list = new ArrayList<>();
 
-    public RvTransactionAdapter(MainViewModel viewModel, List<TransactionTbl> list) {
+    public RvTransactionAdapter(MainViewModel viewModel, LifecycleOwner lifecycleOwner) {
         this.viewModel = viewModel;
-        this.list = list;
+        this.lifecycleOwner = lifecycleOwner;
+
+        viewModel.getTransactionsLD().observe(lifecycleOwner, new Observer<List<TransactionTbl>>() {
+            @Override
+            public void onChanged(@Nullable List<TransactionTbl> transactionTbls) {
+                list.clear();
+                list.addAll(transactionTbls);
+                notifyDataSetChanged();
+            }
+        });
     }
 
     @NonNull
     @Override
     public RvTransactionAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item_card, parent, false);
+                .inflate(R.layout.list_item_transaction, parent, false);
         return new ViewHolder(view);    }
 
     @Override
@@ -38,7 +52,7 @@ public class RvTransactionAdapter extends RecyclerView.Adapter<RvTransactionAdap
 
     @Override
     public int getItemCount() {
-        return 0;
+        return list.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -49,9 +63,9 @@ public class RvTransactionAdapter extends RecyclerView.Adapter<RvTransactionAdap
         }
 
         public void bind(TransactionTbl item) {
-            binding.tvCardName.setText(item.getBankAccountTbl().getAcountNumber());
+            binding.tvCardName.setText("aaaa");
             binding.tvTransactionDate.setText(item.getDate());
-            binding.tvTransactionAmount.setText(item.getAmount());
+            binding.tvTransactionAmount.setText(item.getAmount()+"");
             binding.tvTransactionName.setText(item.getName());
         }
     }

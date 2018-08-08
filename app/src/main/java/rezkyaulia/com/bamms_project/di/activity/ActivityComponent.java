@@ -3,6 +3,7 @@ package rezkyaulia.com.bamms_project.di.activity;
 import dagger.Component;
 import rezkyaulia.com.bamms_project.ui.MainActivity;
 import rezkyaulia.com.bamms_project.di.application.ApplicationComponent;import rezkyaulia.com.bamms_project.ui.main.fragment.ListCardFragment;
+import rezkyaulia.com.bamms_project.ui.main.fragment.ListTransactionFragment;
 
 /**
  * Created by Rezky Aulia Pratama on 12/5/18.
@@ -17,4 +18,6 @@ public interface ActivityComponent {
     void inject(MainActivity mainActivity);
 
     void inject(ListCardFragment listCardFragment);
+
+    void inject(ListTransactionFragment listTransactionFragment);
 }

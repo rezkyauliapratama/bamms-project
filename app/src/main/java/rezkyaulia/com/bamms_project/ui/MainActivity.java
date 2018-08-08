@@ -29,6 +29,7 @@ import rezkyaulia.com.bamms_project.R;
 import rezkyaulia.com.bamms_project.base.BaseActivity;
 import rezkyaulia.com.bamms_project.databinding.ActivityMainBinding;
 import rezkyaulia.com.bamms_project.ui.main.fragment.ListCardFragment;
+import rezkyaulia.com.bamms_project.ui.main.fragment.ListTransactionFragment;
 import rezkyaulia.com.bamms_project.view.EndDrawerToggle;
 import timber.log.Timber;
 
@@ -195,7 +196,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding,MainViewModel
     private void initViewPager() {
         Timber.e("INITVIEWPAGER");
         fragments.add(ListCardFragment.newInstance(null));
-        fragments.add(new Fragment());
+        fragments.add(ListTransactionFragment.newInstance(null));
 
         fragment = fragments.get(0);
         this.adapter = new LfPagerAdapter(getSupportFragmentManager());
