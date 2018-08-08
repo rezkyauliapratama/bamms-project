@@ -95,36 +95,6 @@ public class EndDrawerToggle implements DrawerLayout.DrawerListener {
     public void onDrawerStateChanged(int newState) {
     }
 
-    public void setVisibiliy(int v){
-        AccelerateInterpolator accelerate = new AccelerateInterpolator();
 
-        if (v == View.VISIBLE){
-            toggleButton.setVisibility(v);
-            toggleButton.setTranslationY(-10);
-            toggleButton.setAlpha(0.0f);
-            toggleButton.animate()
-                    .alpha(1.0f)
-                    .translationY(0)
-                    .setDuration(200)
-                    .setInterpolator(accelerate)
-                    .setListener(null);
-        }else if(v == View.GONE){
-            toggleButton.setVisibility(View.VISIBLE);
-            toggleButton.setTranslationY(0);
-            toggleButton.setAlpha(1.0f);
-            toggleButton.animate()
-                    .alpha(0.0f)
-                    .translationY(-10)
-                    .setDuration(200)
-                    .setInterpolator(accelerate)
-                    .setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            super.onAnimationEnd(animation);
-                            toggleButton.setVisibility(v);
-                        }
-                    });
-        }
-    }
 }
 

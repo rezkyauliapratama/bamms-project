@@ -9,5 +9,7 @@
     <string name="status">Status</string>
     <string name="balance">Balance</string>
     <string name="transaction">Transaction</string>
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
 
 </resources>
