@@ -2,23 +2,22 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="rezkyaulia.com.robusta_t1.ui.main.MainActivity">
+    tools:context=".ui.MainActivity">
 
-  <!--  <data>
+    <data>
         <import type="android.view.View" />
         <variable
             name="viewModel"
-            type="rezkyaulia.com.robusta_t1.ui.main.MainViewModel" />
+            type="rezkyaulia.com.bamms_project.ui.MainViewModel" />
 
-    </data>-->
+    </data>
 
 
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        android:animateLayoutChanges="true">
+        android:fitsSystemWindows="true">
 
 
         <RelativeLayout
@@ -33,7 +32,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/background_material_white"
-                android:theme="@style/AppTheme"
                 tools:context=".ui.main.MainActivity">
 
                 <android.support.design.widget.AppBarLayout
@@ -116,10 +114,7 @@
                     </android.support.v7.widget.CardView>
                 </android.support.design.widget.AppBarLayout>
 
-                <FrameLayout
-                    android:id="@+id/screen_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                <include layout="@layout/content_activity_main" android:id="@+id/content_layout"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
             </android.support.design.widget.CoordinatorLayout>
