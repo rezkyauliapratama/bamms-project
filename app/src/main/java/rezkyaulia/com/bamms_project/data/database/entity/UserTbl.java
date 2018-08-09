@@ -26,7 +26,7 @@ public class UserTbl {
     private Long userId;
 
     @Property(nameInDb = "UserType")
-    @SerializedName("user_type")
+    @SerializedName("role_id")
     private int userType;
 
     @Property(nameInDb = "Name")

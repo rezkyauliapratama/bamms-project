@@ -5,6 +5,7 @@ import android.annotation.TargetApi;
 import android.arch.lifecycle.ViewModel;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
@@ -252,11 +253,11 @@ public abstract class BaseActivity <T extends ViewDataBinding, V extends ViewMod
         return false; //NetworkUtils.isNetworkConnected(getApplicationContext());
     }
 
-    public void openActivityOnTokenExpire() {
-       /* startActivity(LoginActivity.newIntent(this));
-        finish();*/
+    @Override
+    public void startActivity(Intent intent) {
+        super.startActivity(intent);
+        overridePendingTransition(R.anim.slid_left, R.anim.do_nothing);
     }
-
 
     public void addFragment(int id, Fragment fragment, String tag) {
         try {

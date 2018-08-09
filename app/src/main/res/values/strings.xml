@@ -13,5 +13,9 @@
     <string name="navigation_drawer_close">Close</string>
     <string name="deposit">Deposit</string>
     <string name="withdraw">Withdraw</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="don_t_have_an_account_sign_up_here">Don\'t have an account ? Please sign up in here</string>
 
 </resources>

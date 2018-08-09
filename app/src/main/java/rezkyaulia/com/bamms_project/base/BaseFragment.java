@@ -148,11 +148,7 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
         return mActivity != null && mActivity.isNetworkConnected();
     }
 
-    public void openActivityOnTokenExpire() {
-        if (mActivity != null) {
-            mActivity.openActivityOnTokenExpire();
-        }
-    }
+
 
     public String[] getBundleValue() {
         return bundleValue;

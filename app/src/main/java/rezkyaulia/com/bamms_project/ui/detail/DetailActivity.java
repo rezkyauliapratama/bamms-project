@@ -44,5 +44,13 @@ public class DetailActivity extends BaseActivity<ActivityDetailAccountBinding, D
             bankAccountTbl = getIntent().getParcelableExtra("bankAccount");
 
         Timber.e("bankAccount : " + new Gson().toJson(bankAccountTbl));
+
+        initView();
+    }
+
+    private void initView() {
+        getBinding().tvCardName.setText(bankAccountTbl.getAcountNumber());
+        getBinding().tvCardStaths.setText("Active");
+        getBinding().tvTotalBalance.setText(String.valueOf(bankAccountTbl.getAccountBalance()));
     }
 }

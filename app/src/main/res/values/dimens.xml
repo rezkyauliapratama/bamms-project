@@ -33,4 +33,7 @@
     <dimen name="size_image_24dp">24dp</dimen>
     <dimen name="default_card_height">98dp</dimen>
     <dimen name="peekheight_normal">56dp</dimen>
+
+    <integer name="speed_anim_memory">100</integer>
+
 </resources>
