@@ -5,7 +5,7 @@ import rezkyaulia.com.bamms_project.ui.MainActivity;
 import rezkyaulia.com.bamms_project.di.application.ApplicationComponent;import rezkyaulia.com.bamms_project.ui.detail.DetailActivity;
 import rezkyaulia.com.bamms_project.ui.login.LoginActivity;
 import rezkyaulia.com.bamms_project.ui.main.fragment.ListCardFragment;
-import rezkyaulia.com.bamms_project.ui.main.fragment.ListTransactionFragment;
+import rezkyaulia.com.bamms_project.ui.main.fragment.ListTransactionFragment;import rezkyaulia.com.bamms_project.ui.register.RegisterActivity;
 
 /**
  * Created by Rezky Aulia Pratama on 12/5/18.
@@ -26,4 +26,6 @@ public interface ActivityComponent {
     void inject(DetailActivity detailActivity);
 
     void inject(LoginActivity loginActivity);
+
+    void inject(RegisterActivity registerActivity);
 }

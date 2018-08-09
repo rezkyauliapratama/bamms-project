@@ -20,4 +20,6 @@ public class ParameterConstant {
     public final String TRANSACTION_TYPE = "TRANSACTION_TYPE";
     public final String CREDIT = "CREDIT";
     public final String DEBUT = "DEBIT";
+
+    public final String CUSTOMER = "CUSTOMER";
 }

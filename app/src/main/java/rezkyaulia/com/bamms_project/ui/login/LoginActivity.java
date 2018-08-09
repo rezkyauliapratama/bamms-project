@@ -16,6 +16,7 @@ import rezkyaulia.com.bamms_project.base.BaseActivity;
 import rezkyaulia.com.bamms_project.databinding.ActivityLoginBinding;
 import rezkyaulia.com.bamms_project.ui.MainActivity;
 import rezkyaulia.com.bamms_project.ui.main.Status;
+import rezkyaulia.com.bamms_project.ui.register.RegisterActivity;
 import timber.log.Timber;
 
 public class LoginActivity extends BaseActivity<ActivityLoginBinding,LoginViewModel> {
@@ -66,7 +67,12 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding,LoginViewMo
 
     void initView(){
 
-
+        getBinding().textViewRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            }
+        });
         getBinding().button.setOnClickListener(view -> getViewModel().login(getBinding().etUsername.getText().toString(),getBinding().etPassword.getText().toString()));
     }
 

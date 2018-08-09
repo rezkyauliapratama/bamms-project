@@ -43,7 +43,7 @@ public class LoginViewModel extends BaseViewModel {
         return statusLD;
     }
 
-    public void login(CharSequence username, CharSequence password) {
+    public void login(String username, String password) {
         Timber.e("login");
         Timber.e("username : "+username);
         Timber.e("password : "+password);
@@ -51,7 +51,7 @@ public class LoginViewModel extends BaseViewModel {
         if (username.length() > 0 && password.length()>0){
             statusLD.setValue(Status.SHOW_PROGRESS);
             Timber.e("!username.isEmpty() && ! password.isEmpty()");
-            LoginRequest loginRequest = new LoginRequest(String.valueOf(username),String.valueOf(password));
+            LoginRequest loginRequest = new LoginRequest(username,password);
             getCompositeDisposible().add(dataManager.getNetworkManager().getUserApi()
                     .loginSingle(loginRequest).subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())

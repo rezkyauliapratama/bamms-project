@@ -10,6 +10,7 @@ import javax.inject.Inject;
 
 import io.reactivex.Single;
 import rezkyaulia.com.bamms_project.base.BaseApi;
+import rezkyaulia.com.bamms_project.data.database.entity.UserTbl;
 import rezkyaulia.com.bamms_project.data.model.ApiResponse;
 import rezkyaulia.com.bamms_project.data.model.LoginRequest;
 import rezkyaulia.com.bamms_project.data.model.LoginResponse;
@@ -69,6 +70,20 @@ public class UserApi extends BaseApi {
         });
     }
 
+    public Single<UserResponse> userCreateSingle(UserTbl userTbl){
+        return Single.create(emitter -> {
+            try {
+                UserResponse response = postUserSync(userTbl);
+                emitter.onSuccess(response);
+            }catch (Exception e){
+                emitter.onError(e);
+            }
+
+
+        });
+    }
+
+
     private void getUser(ParsedCallback<String> callback){
 
 
@@ -103,8 +118,28 @@ public class UserApi extends BaseApi {
     }
 
 
+    private UserResponse postUserSync(UserTbl userTbl){
+        if (mNetworkClient == null){
+            throw new NullPointerException("Network client == null");
+        }
+        try {
+            Timber.e("header : "+new Gson().toJson(getUserHeaderWithParam()));
+            return mNetworkClient.withUrl(mBaseUrl.concat("/user"))
+                    .as(UserResponse.class)
+                    .setHeaders(getUserHeaderWithParam())
+                    .setJsonPojoBody(userTbl)
+                    .getSyncFuture();
+        } catch (Exception e) {
+            Timber.e(e,"getUser Error ");
+        }
+
+        return null;
+    }
+
     public class Response extends ApiResponse<LoginResponse> {
     }
 
+    public class UserResponse extends ApiResponse<UserTbl> {
+    }
 
 }

@@ -12,6 +12,7 @@ import org.greenrobot.greendao.annotation.ToMany;
 
 import java.util.List;
 import org.greenrobot.greendao.DaoException;
+import org.greenrobot.greendao.annotation.Transient;
 
 /**
  * Created by Rezky Aulia Pratama on 8/6/18.
@@ -29,7 +30,6 @@ public class UserTbl {
     @SerializedName("role_id")
     private int userType;
 
-
     @Property(nameInDb = "UserKey")
     @SerializedName("user_key")
     private String userKey;
@@ -37,6 +37,15 @@ public class UserTbl {
 
     @Property(nameInDb = "Name")
     private String name;
+
+
+    @Property(nameInDb = "username")
+    private String username;
+
+
+
+    @Property(nameInDb = "password")
+    private String password;
 
     @Property(nameInDb = "Email")
     private String email;
@@ -53,6 +62,14 @@ public class UserTbl {
     @SerializedName("bank_accounts")
     private List<BankAccountTbl> bankAccountTbls;
 
+    @Transient
+    @SerializedName("role_code")
+    private String roleCode;
+
+    @Transient
+    @SerializedName("type_code")
+    private String typeCode;
+
 /** Used to resolve relations */
 @Generated(hash = 2040040024)
 private transient DaoSession daoSession;
@@ -61,13 +78,16 @@ private transient DaoSession daoSession;
 @Generated(hash = 2081283128)
 private transient UserTblDao myDao;
 
-@Generated(hash = 2138082167)
+@Generated(hash = 1929583413)
 public UserTbl(Long userId, int userType, String userKey, String name,
-        String email, String phone, String address) {
+        String username, String password, String email, String phone,
+        String address) {
     this.userId = userId;
     this.userType = userType;
     this.userKey = userKey;
     this.name = name;
+    this.username = username;
+    this.password = password;
     this.email = email;
     this.phone = phone;
     this.address = address;
@@ -107,6 +127,22 @@ public String getName() {
 
 public void setName(String name) {
     this.name = name;
+}
+
+public String getUsername() {
+    return this.username;
+}
+
+public void setUsername(String username) {
+    this.username = username;
+}
+
+public String getPassword() {
+    return this.password;
+}
+
+public void setPassword(String password) {
+    this.password = password;
 }
 
 public String getEmail() {
@@ -198,13 +234,26 @@ public void update() {
     myDao.update(this);
 }
 
-/** called by internal mechanisms, do not call yourself. */
-@Generated(hash = 1492006224)
-public void __setDaoSession(DaoSession daoSession) {
-    this.daoSession = daoSession;
-    myDao = daoSession != null ? daoSession.getUserTblDao() : null;
-}
+public String getRoleCode() {
+        return roleCode;
+    }
 
-    
+    public String getTypeCode() {
+        return typeCode;
+    }
 
+    public void setRoleCode(String roleCode) {
+        this.roleCode = roleCode;
+    }
+
+    public void setTypeCode(String typeCode) {
+        this.typeCode = typeCode;
+    }
+
+    /** called by internal mechanisms, do not call yourself. */
+    @Generated(hash = 1492006224)
+    public void __setDaoSession(DaoSession daoSession) {
+        this.daoSession = daoSession;
+        myDao = daoSession != null ? daoSession.getUserTblDao() : null;
+    }
 }

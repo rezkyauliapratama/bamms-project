@@ -17,5 +17,17 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="don_t_have_an_account_sign_up_here">Don\'t have an account ? Please sign up in here</string>
+    <string name="already_have_an_account_sign_in_here">Already have an account? Please signin here</string>
+    <string name="register">Register</string>
+    <string name="information">Information</string>
+    <string name="save">Save</string>
+    <string name="your_account">Your account</string>
+    <string name="full_name">Full name</string>
+    <string name="email">Email</string>
+    <string name="retype_password">Retype password</string>
+    <string name="phone">Phone</string>
+    <string name="account_type">Account type</string>
+    <string name="address">Address</string>
+    <string name="select_account_type">- Account type -</string>
 
 </resources>
