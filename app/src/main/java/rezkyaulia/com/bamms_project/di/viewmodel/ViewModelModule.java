@@ -7,6 +7,7 @@ import dagger.Module;
 import dagger.multibindings.IntoMap;
 import rezkyaulia.com.bamms_project.ui.MainViewModel;
 import rezkyaulia.com.bamms_project.ui.detail.DetailViewModel;
+import rezkyaulia.com.bamms_project.ui.login.LoginViewModel;
 
 /**
  * Created by Rezky Aulia Pratama on 5/6/18.
@@ -24,5 +25,9 @@ public abstract class ViewModelModule {
     @ViewModelKey(DetailViewModel.class)
     abstract ViewModel bindDetailViewModel(DetailViewModel detailViewModel);
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(LoginViewModel.class)
+    abstract ViewModel bindLoginViewModel(LoginViewModel loginViewModel);
 
 }
