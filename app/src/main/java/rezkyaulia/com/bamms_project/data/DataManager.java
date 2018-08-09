@@ -41,4 +41,8 @@ public class DataManager {
         return mDatabaseManager.getUserRepo().getId();
     }
 
+    public String getUserKey(){
+        return mDatabaseManager.getUserRepo().getUserKey();
+    }
+
 }

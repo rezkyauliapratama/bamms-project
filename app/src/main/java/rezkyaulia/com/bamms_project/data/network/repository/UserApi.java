@@ -90,7 +90,7 @@ public class UserApi extends BaseApi {
         }
         try {
             Timber.e("header : "+new Gson().toJson(getUserHeaderWithParam()));
-            return mNetworkClient.withUrl(mBaseUrl.concat("login"))
+            return mNetworkClient.withUrl(mBaseUrl.concat("/login"))
                     .as(Response.class)
                     .setHeaders(getUserHeaderWithParam())
                     .setJsonPojoBody(loginRequest)

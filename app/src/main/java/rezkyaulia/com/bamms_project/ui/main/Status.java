@@ -5,5 +5,7 @@ public enum Status {
     LOAD_UNSUCCESS,
     INVALID,
     ERROR,
-    START_ACTIVITY
+    START_ACTIVITY,
+    SHOW_PROGRESS,
+    HIDE_PROGRESS
 }

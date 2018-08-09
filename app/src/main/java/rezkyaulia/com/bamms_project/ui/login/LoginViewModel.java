@@ -31,33 +31,63 @@ public class LoginViewModel extends BaseViewModel {
     public LoginViewModel(DataManager dataManager) {
 
         this.dataManager = dataManager;
+        initialize();
     }
 
+    void initialize(){
+        if (dataManager.getPrefManager().getUserKey().length() > 0){
+            statusLD.setValue(Status.LOAD_SUCCESS);
+        }
+    }
     public MutableLiveData<Enum> getStatusLD() {
         return statusLD;
     }
 
-    public void login(String username, String password) {
+    public void login(CharSequence username, CharSequence password) {
         Timber.e("login");
         Timber.e("username : "+username);
         Timber.e("password : "+password);
 
         if (username.length() > 0 && password.length()>0){
+            statusLD.setValue(Status.SHOW_PROGRESS);
             Timber.e("!username.isEmpty() && ! password.isEmpty()");
-            LoginRequest loginRequest = new LoginRequest(username,password);
+            LoginRequest loginRequest = new LoginRequest(String.valueOf(username),String.valueOf(password));
             getCompositeDisposible().add(dataManager.getNetworkManager().getUserApi()
                     .loginSingle(loginRequest).subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(response -> {
                         Timber.e("onsuccess : "+ new Gson().toJson(response));
-                        statusLD.setValue(Status.LOAD_SUCCESS);
+                        if (dataManager.getNetworkManager().success(response)){
+
+                            dataManager.getDbManager().getUserRepo().removeAll();
+                            dataManager.getDbManager().getParameterRepo().removeAll();
+
+                            dataManager.getDbManager().getUserRepo().add(response.ApiValue.getUserTbl());
+                            dataManager.getDbManager().getParameterRepo().add(response.ApiValue.getParameterTbl());
+
+                            String userKey = dataManager.getUserKey();
+                            if (userKey != null){
+                                dataManager.getPrefManager().setUserKey(userKey);
+                                statusLD.setValue(Status.LOAD_SUCCESS);
+                            }else{
+                                statusLD.setValue(Status.INVALID);
+                            }
+                            statusLD.setValue(Status.HIDE_PROGRESS);
+
+
+                        }
+
 
                     }, throwable -> {
                         Timber.e(throwable,"onerror");
                         statusLD.setValue(Status.LOAD_UNSUCCESS);
+                        statusLD.setValue(Status.HIDE_PROGRESS);
+
                     }));
         }else{
             statusLD.setValue(Status.INVALID);
+            statusLD.setValue(Status.HIDE_PROGRESS);
+
         }
 
     }

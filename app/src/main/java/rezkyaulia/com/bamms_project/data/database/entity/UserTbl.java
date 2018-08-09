@@ -29,6 +29,12 @@ public class UserTbl {
     @SerializedName("role_id")
     private int userType;
 
+
+    @Property(nameInDb = "UserKey")
+    @SerializedName("user_key")
+    private String userKey;
+
+
     @Property(nameInDb = "Name")
     private String name;
 
@@ -47,149 +53,158 @@ public class UserTbl {
     @SerializedName("bank_accounts")
     private List<BankAccountTbl> bankAccountTbls;
 
-    /** Used to resolve relations */
-    @Generated(hash = 2040040024)
-    private transient DaoSession daoSession;
+/** Used to resolve relations */
+@Generated(hash = 2040040024)
+private transient DaoSession daoSession;
 
-    /** Used for active entity operations. */
-    @Generated(hash = 2081283128)
-    private transient UserTblDao myDao;
+/** Used for active entity operations. */
+@Generated(hash = 2081283128)
+private transient UserTblDao myDao;
 
-    @Generated(hash = 153673466)
-    public UserTbl(Long userId, int userType, String name, String email,
-            String phone, String address) {
-        this.userId = userId;
-        this.userType = userType;
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.address = address;
-    }
+@Generated(hash = 2138082167)
+public UserTbl(Long userId, int userType, String userKey, String name,
+        String email, String phone, String address) {
+    this.userId = userId;
+    this.userType = userType;
+    this.userKey = userKey;
+    this.name = name;
+    this.email = email;
+    this.phone = phone;
+    this.address = address;
+}
 
-    @Generated(hash = 585658511)
-    public UserTbl() {
-    }
+@Generated(hash = 585658511)
+public UserTbl() {
+}
 
-    public Long getUserId() {
-        return this.userId;
-    }
+public Long getUserId() {
+    return this.userId;
+}
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
+public void setUserId(Long userId) {
+    this.userId = userId;
+}
 
-    public String getName() {
-        return this.name;
-    }
+public int getUserType() {
+    return this.userType;
+}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+public void setUserType(int userType) {
+    this.userType = userType;
+}
 
-    public String getEmail() {
-        return this.email;
-    }
+public String getUserKey() {
+    return this.userKey;
+}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+public void setUserKey(String userKey) {
+    this.userKey = userKey;
+}
 
-    public String getPhone() {
-        return this.phone;
-    }
+public String getName() {
+    return this.name;
+}
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+public void setName(String name) {
+    this.name = name;
+}
 
-    public String getAddress() {
-        return this.address;
-    }
+public String getEmail() {
+    return this.email;
+}
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+public void setEmail(String email) {
+    this.email = email;
+}
 
-    public int getUserType() {
-        return this.userType;
-    }
+public String getPhone() {
+    return this.phone;
+}
 
-    public void setUserType(int userType) {
-        this.userType = userType;
-    }
+public void setPhone(String phone) {
+    this.phone = phone;
+}
 
-    /**
-     * To-many relationship, resolved on first access (and after reset).
-     * Changes to to-many relations are not persisted, make changes to the target entity.
-     */
-    @Generated(hash = 652737584)
-    public List<BankAccountTbl> getBankAccountTbls() {
-        if (bankAccountTbls == null) {
-            final DaoSession daoSession = this.daoSession;
-            if (daoSession == null) {
-                throw new DaoException("Entity is detached from DAO context");
+public String getAddress() {
+    return this.address;
+}
+
+public void setAddress(String address) {
+    this.address = address;
+}
+
+/**
+ * To-many relationship, resolved on first access (and after reset).
+ * Changes to to-many relations are not persisted, make changes to the target entity.
+ */
+@Generated(hash = 652737584)
+public List<BankAccountTbl> getBankAccountTbls() {
+    if (bankAccountTbls == null) {
+        final DaoSession daoSession = this.daoSession;
+        if (daoSession == null) {
+            throw new DaoException("Entity is detached from DAO context");
+        }
+        BankAccountTblDao targetDao = daoSession.getBankAccountTblDao();
+        List<BankAccountTbl> bankAccountTblsNew = targetDao
+                ._queryUserTbl_BankAccountTbls(userId);
+        synchronized (this) {
+            if (bankAccountTbls == null) {
+                bankAccountTbls = bankAccountTblsNew;
             }
-            BankAccountTblDao targetDao = daoSession.getBankAccountTblDao();
-            List<BankAccountTbl> bankAccountTblsNew = targetDao
-                    ._queryUserTbl_BankAccountTbls(userId);
-            synchronized (this) {
-                if (bankAccountTbls == null) {
-                    bankAccountTbls = bankAccountTblsNew;
-                }
-            }
         }
-        return bankAccountTbls;
     }
+    return bankAccountTbls;
+}
 
-    /** Resets a to-many relationship, making the next get call to query for a fresh result. */
-    @Generated(hash = 1875301405)
-    public synchronized void resetBankAccountTbls() {
-        bankAccountTbls = null;
+/** Resets a to-many relationship, making the next get call to query for a fresh result. */
+@Generated(hash = 1875301405)
+public synchronized void resetBankAccountTbls() {
+    bankAccountTbls = null;
+}
+
+/**
+ * Convenient call for {@link org.greenrobot.greendao.AbstractDao#delete(Object)}.
+ * Entity must attached to an entity context.
+ */
+@Generated(hash = 128553479)
+public void delete() {
+    if (myDao == null) {
+        throw new DaoException("Entity is detached from DAO context");
     }
+    myDao.delete(this);
+}
 
-    /**
-     * Convenient call for {@link org.greenrobot.greendao.AbstractDao#delete(Object)}.
-     * Entity must attached to an entity context.
-     */
-    @Generated(hash = 128553479)
-    public void delete() {
-        if (myDao == null) {
-            throw new DaoException("Entity is detached from DAO context");
-        }
-        myDao.delete(this);
+/**
+ * Convenient call for {@link org.greenrobot.greendao.AbstractDao#refresh(Object)}.
+ * Entity must attached to an entity context.
+ */
+@Generated(hash = 1942392019)
+public void refresh() {
+    if (myDao == null) {
+        throw new DaoException("Entity is detached from DAO context");
     }
+    myDao.refresh(this);
+}
 
-    /**
-     * Convenient call for {@link org.greenrobot.greendao.AbstractDao#refresh(Object)}.
-     * Entity must attached to an entity context.
-     */
-    @Generated(hash = 1942392019)
-    public void refresh() {
-        if (myDao == null) {
-            throw new DaoException("Entity is detached from DAO context");
-        }
-        myDao.refresh(this);
+/**
+ * Convenient call for {@link org.greenrobot.greendao.AbstractDao#update(Object)}.
+ * Entity must attached to an entity context.
+ */
+@Generated(hash = 713229351)
+public void update() {
+    if (myDao == null) {
+        throw new DaoException("Entity is detached from DAO context");
     }
+    myDao.update(this);
+}
 
-    /**
-     * Convenient call for {@link org.greenrobot.greendao.AbstractDao#update(Object)}.
-     * Entity must attached to an entity context.
-     */
-    @Generated(hash = 713229351)
-    public void update() {
-        if (myDao == null) {
-            throw new DaoException("Entity is detached from DAO context");
-        }
-        myDao.update(this);
-    }
+/** called by internal mechanisms, do not call yourself. */
+@Generated(hash = 1492006224)
+public void __setDaoSession(DaoSession daoSession) {
+    this.daoSession = daoSession;
+    myDao = daoSession != null ? daoSession.getUserTblDao() : null;
+}
 
-    /** called by internal mechanisms, do not call yourself. */
-    @Generated(hash = 1492006224)
-    public void __setDaoSession(DaoSession daoSession) {
-        this.daoSession = daoSession;
-        myDao = daoSession != null ? daoSession.getUserTblDao() : null;
-    }
-
-
+    
 
 }
