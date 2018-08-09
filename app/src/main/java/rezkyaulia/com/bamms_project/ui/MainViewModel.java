@@ -13,6 +13,7 @@ import rezkyaulia.com.bamms_project.data.database.DatabaseManager;
 import rezkyaulia.com.bamms_project.data.database.entity.BankAccountTbl;
 import rezkyaulia.com.bamms_project.data.database.entity.TransactionTbl;
 import rezkyaulia.com.bamms_project.data.network.NetworkManager;
+import rezkyaulia.com.bamms_project.ui.main.Status;
 import timber.log.Timber;
 
 /**
@@ -25,6 +26,8 @@ public class MainViewModel extends BaseViewModel {
 
     private MutableLiveData<List<BankAccountTbl>> bankAccountsLD= new MutableLiveData<>();
     private MutableLiveData<List<TransactionTbl>> transactionsLD= new MutableLiveData<>();
+    private MutableLiveData<Enum> statusLD = new MutableLiveData<>();
+    private MutableLiveData<BankAccountTbl> bankAccountLD= new MutableLiveData<>();
 
 
     @Inject
@@ -44,10 +47,22 @@ public class MainViewModel extends BaseViewModel {
         return transactionsLD;
     }
 
+    public MutableLiveData<Enum> getStatusLD() {
+        return statusLD;
+    }
+
     void initialize(){
         Timber.e("initialize");
         DummyData dummyData = new DummyData();
         bankAccountsLD.setValue(dummyData.getAccounts());
         transactionsLD.setValue(dummyData.getTransactions());
+    }
+
+    public void startActivity(BankAccountTbl bankAccountTbl){
+        bankAccountLD.setValue(bankAccountTbl);
+    }
+
+    public MutableLiveData<BankAccountTbl> getBankAccountLD() {
+        return bankAccountLD;
     }
 }

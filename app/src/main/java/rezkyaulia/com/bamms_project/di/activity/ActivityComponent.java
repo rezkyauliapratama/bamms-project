@@ -2,7 +2,7 @@ package rezkyaulia.com.bamms_project.di.activity;
 
 import dagger.Component;
 import rezkyaulia.com.bamms_project.ui.MainActivity;
-import rezkyaulia.com.bamms_project.di.application.ApplicationComponent;import rezkyaulia.com.bamms_project.ui.main.fragment.ListCardFragment;
+import rezkyaulia.com.bamms_project.di.application.ApplicationComponent;import rezkyaulia.com.bamms_project.ui.detail.DetailActivity;import rezkyaulia.com.bamms_project.ui.main.fragment.ListCardFragment;
 import rezkyaulia.com.bamms_project.ui.main.fragment.ListTransactionFragment;
 
 /**
@@ -20,4 +20,6 @@ public interface ActivityComponent {
     void inject(ListCardFragment listCardFragment);
 
     void inject(ListTransactionFragment listTransactionFragment);
+
+    void inject(DetailActivity detailActivity);
 }

@@ -44,7 +44,7 @@ public class RvCardAdapter extends RecyclerView.Adapter<RvCardAdapter.ViewHolder
     public RvCardAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item_card, parent, false);
-        return new ViewHolder(view);    }
+        return new ViewHolder(view, this.viewModel);    }
 
     @Override
     public void onBindViewHolder(@NonNull RvCardAdapter.ViewHolder holder, int position) {
@@ -58,12 +58,24 @@ public class RvCardAdapter extends RecyclerView.Adapter<RvCardAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         ListItemCardBinding binding;
-        public ViewHolder(View itemView) {
+        private MainViewModel viewModel;
+        private BankAccountTbl bankAccountTbl;
+
+        public ViewHolder(View itemView, MainViewModel viewModel) {
             super(itemView);
             binding = ListItemCardBinding.bind(itemView);
+            this.viewModel = viewModel;
+
+            binding.getRoot().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    viewModel.startActivity(bankAccountTbl);
+                }
+            });
         }
 
         public void bind(BankAccountTbl bankAccountTbl) {
+            this.bankAccountTbl = bankAccountTbl;
             binding.ivIcon.setImageResource(R.drawable.ic_mastercard);
             binding.tvCardName.setText(bankAccountTbl.getAcountNumber());
             binding.tvCardStaths.setText("Active");

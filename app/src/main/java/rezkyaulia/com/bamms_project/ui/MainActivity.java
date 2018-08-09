@@ -1,9 +1,12 @@
 package rezkyaulia.com.bamms_project.ui;
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -27,15 +30,17 @@ import java.util.List;
 import rezkyaulia.com.bamms_project.BR;
 import rezkyaulia.com.bamms_project.R;
 import rezkyaulia.com.bamms_project.base.BaseActivity;
+import rezkyaulia.com.bamms_project.data.database.entity.BankAccountTbl;
 import rezkyaulia.com.bamms_project.databinding.ActivityMainBinding;
+import rezkyaulia.com.bamms_project.ui.detail.DetailActivity;
+import rezkyaulia.com.bamms_project.ui.main.Status;
 import rezkyaulia.com.bamms_project.ui.main.fragment.ListCardFragment;
 import rezkyaulia.com.bamms_project.ui.main.fragment.ListTransactionFragment;
 import rezkyaulia.com.bamms_project.view.EndDrawerToggle;
 import timber.log.Timber;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding,MainViewModel>
-    implements NavigationView.OnNavigationItemSelectedListener
-    {
+    implements NavigationView.OnNavigationItemSelectedListener {
     List<Fragment> fragments;
     Fragment fragment;
     private LfPagerAdapter adapter;
@@ -74,12 +79,24 @@ public class MainActivity extends BaseActivity<ActivityMainBinding,MainViewModel
         initViewPager();
         initTab();
 
+        initObserver();
 
 
     }
 
 
-    /*init navigation layout*/
+    private void initObserver() {
+       getViewModel().getBankAccountLD().observe(this, new Observer<BankAccountTbl>() {
+           @Override
+           public void onChanged(@Nullable BankAccountTbl bankAccountTbl) {
+               Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+               intent.putExtra("bankAccount",bankAccountTbl);
+               startActivity(intent);
+           }
+       });
+    }
+
+        /*init navigation layout*/
 
     void initDrawerMenu(){
         toggle = new EndDrawerToggle(

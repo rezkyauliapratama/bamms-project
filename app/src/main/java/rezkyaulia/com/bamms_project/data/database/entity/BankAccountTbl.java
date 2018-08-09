@@ -1,6 +1,9 @@
 package rezkyaulia.com.bamms_project.data.database.entity;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import org.greenrobot.greendao.annotation.Entity;
@@ -11,6 +14,7 @@ import org.greenrobot.greendao.annotation.JoinProperty;
 import org.greenrobot.greendao.annotation.Property;
 import org.greenrobot.greendao.annotation.ToMany;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.greenrobot.greendao.DaoException;
 
@@ -18,7 +22,7 @@ import org.greenrobot.greendao.DaoException;
         @Index(value = "accountId", unique = true)
 })
 
-public class BankAccountTbl {
+public class BankAccountTbl implements Parcelable{
     @Id
     @Property(nameInDb = "AccountId")
     @SerializedName("id")
@@ -186,11 +190,49 @@ public void update() {
     myDao.update(this);
 }
 
-/** called by internal mechanisms, do not call yourself. */
-@Generated(hash = 1527797710)
-public void __setDaoSession(DaoSession daoSession) {
-    this.daoSession = daoSession;
-    myDao = daoSession != null ? daoSession.getBankAccountTblDao() : null;
-}
+@Override
+    public int describeContents() {
+        return 0;
+    }
 
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(this.accountId);
+        dest.writeValue(this.userId);
+        dest.writeValue(this.type);
+        dest.writeString(this.acountNumber);
+        dest.writeInt(this.accountBalance);
+        dest.writeString(this.description);
+        dest.writeList(this.transactionTbls);
+    }
+
+    /** called by internal mechanisms, do not call yourself. */
+    @Generated(hash = 1527797710)
+    public void __setDaoSession(DaoSession daoSession) {
+        this.daoSession = daoSession;
+        myDao = daoSession != null ? daoSession.getBankAccountTblDao() : null;
+    }
+
+    protected BankAccountTbl(Parcel in) {
+        this.accountId = (Long) in.readValue(Long.class.getClassLoader());
+        this.userId = (Long) in.readValue(Long.class.getClassLoader());
+        this.type = (Long) in.readValue(Long.class.getClassLoader());
+        this.acountNumber = in.readString();
+        this.accountBalance = in.readInt();
+        this.description = in.readString();
+        this.transactionTbls = new ArrayList<TransactionTbl>();
+        in.readList(this.transactionTbls, TransactionTbl.class.getClassLoader());
+    }
+
+    public static final Creator<BankAccountTbl> CREATOR = new Creator<BankAccountTbl>() {
+        @Override
+        public BankAccountTbl createFromParcel(Parcel source) {
+            return new BankAccountTbl(source);
+        }
+
+        @Override
+        public BankAccountTbl[] newArray(int size) {
+            return new BankAccountTbl[size];
+        }
+    };
 }

@@ -10,5 +10,7 @@
         <item name="android:colorForeground">@color/foreground_light</item>
         <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
         <item name="android:statusBarColor">@color/colorPrimary</item>
+        <item name="coordinatorLayoutStyle">@style/Widget.Design.CoordinatorLayout</item>
+        <item name="cardViewStyle">@style/CardView</item>
     </style>
 </resources>
