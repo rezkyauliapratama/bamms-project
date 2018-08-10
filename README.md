@@ -4,7 +4,7 @@ Info :
 
 - Project ini menggunakan arsitektur MVVM (MODEL - VIEW - VIEWMODEL)
 
-![alt text](https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwitmfnUi-PcAhVILY8KHVGsC4cQjRx6BAgBEAU&url=https%3A%2F%2Fwww.azoft.com%2Fblog%2Fmvvm-android-data-binding%2F&psig=AOvVaw2Q8RtUaF4wJXP-3ulxd2zo&ust=1534011316570069)
+![alt text](https://www.azoft.com/wp-content/uploads/2015/12/pattern-mvvm-scheme.png)
 
 - Project ini menggunakan ORM GreenDao
 - Project ini menggunakan DI (Dependency Injection) menggunakan Dagger2
