@@ -107,6 +107,8 @@ public class MainViewModel extends BaseViewModel {
                             }));
                         }
                         transactionsLD.setValue(response.ApiList);
+                        statusLD.setValue(Status.LOAD_SUCCESS);
+
                     }else{
                         statusLD.setValue(Status.LOAD_UNSUCCESS);
                         statusLD.setValue(Status.HIDE_PROGRESS);

@@ -68,6 +68,8 @@ public class ListTransactionFragment extends BaseFragment<FragmentTransactionBin
             public void onChanged(@Nullable Enum anEnum) {
                 if (anEnum.equals(Status.LOAD_UNSUCCESS)){
                     getBinding().tvNoData.setVisibility(View.VISIBLE);
+                }if (anEnum.equals(Status.LOAD_SUCCESS)){
+                    getBinding().tvNoData.setVisibility(View.GONE);
                 }
             }
         });
