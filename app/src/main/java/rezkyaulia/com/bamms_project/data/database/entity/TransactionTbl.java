@@ -13,6 +13,7 @@ import java.util.List;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.ToOne;
 import org.greenrobot.greendao.DaoException;
+import org.greenrobot.greendao.annotation.Transient;
 
 @Entity(nameInDb = "TransactionTbl", indexes = {
         @Index(value = "_id", unique = true)
@@ -50,11 +51,17 @@ public class TransactionTbl {
     private int amount;
 
     @ToOne(joinProperty = "accountId")
-    @SerializedName("account")
     private BankAccountTbl bankAccountTbl;
 
+    @Transient
+    @SerializedName("account")
+    private BankAccountTbl account;
 
-/** Used to resolve relations */
+    public BankAccountTbl getAccount() {
+        return account;
+    }
+
+    /** Used to resolve relations */
 @Generated(hash = 2040040024)
 private transient DaoSession daoSession;
 

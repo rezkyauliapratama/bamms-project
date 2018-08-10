@@ -9,14 +9,20 @@ import android.view.View;
 
 import java.util.Objects;
 
+import javax.inject.Inject;
+
 import rezkyaulia.com.bamms_project.BR;
 import rezkyaulia.com.bamms_project.R;
 import rezkyaulia.com.bamms_project.base.BaseFragment;
 import rezkyaulia.com.bamms_project.databinding.FragmentCardBinding;
-import rezkyaulia.com.bamms_project.ui.MainViewModel;
+import rezkyaulia.com.bamms_project.ui.main.MainViewModel;
 import rezkyaulia.com.bamms_project.ui.main.adapter.RvCardAdapter;
+import rezkyaulia.com.bamms_project.util.ParameterConstant;
 
 public class ListCardFragment extends BaseFragment<FragmentCardBinding,MainViewModel> {
+    @Inject
+    ParameterConstant constant;
+
     @Override
     public int getLayoutId() {
         return R.layout.fragment_card;
@@ -57,7 +63,7 @@ public class ListCardFragment extends BaseFragment<FragmentCardBinding,MainViewM
     }
 
     private void initView() {
-        getBinding().rvCardList.setAdapter(new RvCardAdapter(getViewModel(),this));
+        getBinding().rvCardList.setAdapter(new RvCardAdapter(getViewModel(),this,constant));
         getBinding().rvCardList.setLayoutManager(new LinearLayoutManager(getContext()));
         getBinding().rvCardList.setVisibility(View.VISIBLE);
     }

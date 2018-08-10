@@ -17,6 +17,7 @@ import org.greenrobot.greendao.annotation.ToMany;
 import java.util.ArrayList;
 import java.util.List;
 import org.greenrobot.greendao.DaoException;
+import org.greenrobot.greendao.annotation.Transient;
 
 @Entity(nameInDb = "BankAccountTbl", indexes = {
         @Index(value = "accountId", unique = true)
@@ -41,7 +42,7 @@ public class BankAccountTbl implements Parcelable{
     private String acountNumber;
 
     @Property(nameInDb = "AccountBalance")
-    @SerializedName("account_balance")
+    @SerializedName("balance")
     private int accountBalance;
 
 
@@ -53,6 +54,9 @@ public class BankAccountTbl implements Parcelable{
     })
     @SerializedName("transactions")
     private List<TransactionTbl> transactionTbls;
+
+    @Transient
+    private String type_code;
 
 /** Used to resolve relations */
 @Generated(hash = 2040040024)
@@ -190,7 +194,17 @@ public void update() {
     myDao.update(this);
 }
 
-@Override
+
+
+    public String getType_code() {
+        return type_code;
+    }
+
+    public void setType_code(String type_code) {
+        this.type_code = type_code;
+    }
+
+    @Override
     public int describeContents() {
         return 0;
     }
@@ -204,6 +218,7 @@ public void update() {
         dest.writeInt(this.accountBalance);
         dest.writeString(this.description);
         dest.writeList(this.transactionTbls);
+        dest.writeString(this.type_code);
     }
 
     /** called by internal mechanisms, do not call yourself. */
@@ -222,6 +237,7 @@ public void update() {
         this.description = in.readString();
         this.transactionTbls = new ArrayList<TransactionTbl>();
         in.readList(this.transactionTbls, TransactionTbl.class.getClassLoader());
+        this.type_code = in.readString();
     }
 
     public static final Creator<BankAccountTbl> CREATOR = new Creator<BankAccountTbl>() {

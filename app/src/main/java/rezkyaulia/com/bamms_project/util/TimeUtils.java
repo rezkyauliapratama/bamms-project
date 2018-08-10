@@ -23,13 +23,20 @@ public class TimeUtils {
     public TimeUtils() {
     }
 
+
         public String getUserFriendlyDate(Date date){
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMMM yyyy");
             return simpleDateFormat.format(date);
         }
 
+
+    public String getDateForApi(Date date){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        return simpleDateFormat.format(date);
+    }
+
         public String getUserFriendlyDateTime(Date date){
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy MMM,dd HH:mm");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM yy, HH:mm");
             return simpleDateFormat.format(date);
         }
 
@@ -83,9 +90,8 @@ public class TimeUtils {
             return ret;
         }
 
-        @Nullable
-        private Date convertStringToDate (String str){
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        public Date convertStringToDate (String str){
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
             try {
                 Date date = format.parse(str);
                 return date;

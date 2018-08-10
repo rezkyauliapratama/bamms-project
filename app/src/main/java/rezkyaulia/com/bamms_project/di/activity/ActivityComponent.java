@@ -1,7 +1,7 @@
 package rezkyaulia.com.bamms_project.di.activity;
 
 import dagger.Component;
-import rezkyaulia.com.bamms_project.ui.MainActivity;
+import rezkyaulia.com.bamms_project.ui.main.MainActivity;
 import rezkyaulia.com.bamms_project.di.application.ApplicationComponent;import rezkyaulia.com.bamms_project.ui.detail.DetailActivity;
 import rezkyaulia.com.bamms_project.ui.login.LoginActivity;
 import rezkyaulia.com.bamms_project.ui.main.fragment.ListCardFragment;

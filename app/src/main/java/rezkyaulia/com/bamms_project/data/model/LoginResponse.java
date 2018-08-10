@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import rezkyaulia.com.bamms_project.data.database.entity.BankAccountTbl;
 import rezkyaulia.com.bamms_project.data.database.entity.ParameterTbl;
 import rezkyaulia.com.bamms_project.data.database.entity.UserTbl;
 
@@ -18,6 +19,9 @@ public class LoginResponse {
 
     @SerializedName("parameter_tbl")
     List<ParameterTbl> parameterTbl;
+
+    @SerializedName("account_tbl")
+    List<BankAccountTbl> bankAccountTbls;
 
     public UserTbl getUserTbl() {
         return userTbl;
@@ -35,4 +39,11 @@ public class LoginResponse {
         this.parameterTbl = parameterTbl;
     }
 
+    public List<BankAccountTbl> getBankAccountTbls() {
+        return bankAccountTbls;
+    }
+
+    public void setBankAccountTbls(List<BankAccountTbl> bankAccountTbls) {
+        this.bankAccountTbls = bankAccountTbls;
+    }
 }

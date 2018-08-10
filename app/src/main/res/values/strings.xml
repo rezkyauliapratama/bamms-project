@@ -29,5 +29,7 @@
     <string name="account_type">Account type</string>
     <string name="address">Address</string>
     <string name="select_account_type">- Account type -</string>
+    <string name="active">Active</string>
+    <string name="last_7_days_transaction">Last 7 days transaction</string>
 
 </resources>

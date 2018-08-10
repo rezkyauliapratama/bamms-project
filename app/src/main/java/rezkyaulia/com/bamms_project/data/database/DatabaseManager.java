@@ -3,7 +3,9 @@ package rezkyaulia.com.bamms_project.data.database;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import rezkyaulia.com.bamms_project.data.database.manage.ManageBankAccountTbl;
 import rezkyaulia.com.bamms_project.data.database.manage.ManageParameterTbl;
+import rezkyaulia.com.bamms_project.data.database.manage.ManageTransactionTbl;
 import rezkyaulia.com.bamms_project.data.database.manage.ManageUserTbl;
 
 
@@ -17,6 +19,12 @@ public class DatabaseManager {
 
     @Inject
     ManageParameterTbl manageParameterTbl;
+
+    @Inject
+    ManageTransactionTbl manageTransactionTbl;
+
+    @Inject
+    ManageBankAccountTbl manageBankAccountTbl;
 
 
     @Inject
@@ -32,4 +40,11 @@ public class DatabaseManager {
         return manageParameterTbl;
     }
 
+    public ManageTransactionTbl getTransactionRepo() {
+        return manageTransactionTbl;
+    }
+
+    public ManageBankAccountTbl getAccountRepo() {
+        return manageBankAccountTbl;
+    }
 }

@@ -1,11 +1,8 @@
 package rezkyaulia.com.bamms_project.ui.login;
 
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import java.util.Objects;
@@ -14,7 +11,7 @@ import rezkyaulia.com.bamms_project.BR;
 import rezkyaulia.com.bamms_project.R;
 import rezkyaulia.com.bamms_project.base.BaseActivity;
 import rezkyaulia.com.bamms_project.databinding.ActivityLoginBinding;
-import rezkyaulia.com.bamms_project.ui.MainActivity;
+import rezkyaulia.com.bamms_project.ui.main.MainActivity;
 import rezkyaulia.com.bamms_project.ui.main.Status;
 import rezkyaulia.com.bamms_project.ui.register.RegisterActivity;
 import timber.log.Timber;

@@ -145,7 +145,7 @@
                 android:id="@+id/tv_information"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Last 7 days transaction"
+                android:text="@string/last_7_days_transaction"
                 android:textAppearance="@style/TextStyle.Small"
                 android:paddingLeft="@dimen/margin_normal"
                 android:textColor="@color/primaryTextColor"/>
@@ -153,11 +153,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_transactionList"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     tools:listitem="@layout/list_item_transaction"/>
             </android.support.v4.widget.SwipeRefreshLayout>
         </LinearLayout>
+
+
+        <FrameLayout
+            android:visibility="gone"
+            android:id="@+id/layout_progress"
+            android:background="@color/colorWhiteTransparent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <rezkyaulia.com.bamms_project.view.ALoadingView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </FrameLayout>
 
         <io.github.kobakei.materialfabspeeddial.FabSpeedDial
             android:id="@+id/fab"

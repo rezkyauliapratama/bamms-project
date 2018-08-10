@@ -7,7 +7,7 @@
         <import type="android.view.View" />
         <variable
             name="viewModel"
-            type="rezkyaulia.com.bamms_project.ui.MainViewModel" />
+            type="rezkyaulia.com.bamms_project.ui.main.MainViewModel" />
     </data>
 
     <FrameLayout

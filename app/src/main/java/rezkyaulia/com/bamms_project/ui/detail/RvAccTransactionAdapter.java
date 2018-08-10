@@ -1,4 +1,4 @@
-package rezkyaulia.com.bamms_project.ui.main.adapter;
+package rezkyaulia.com.bamms_project.ui.detail;
 
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.Observer;
@@ -21,16 +21,16 @@ import rezkyaulia.com.bamms_project.databinding.ListItemTransactionBinding;
 import rezkyaulia.com.bamms_project.ui.main.MainViewModel;
 import rezkyaulia.com.bamms_project.util.TimeUtils;
 
-public class RvTransactionAdapter extends RecyclerView.Adapter<RvTransactionAdapter.ViewHolder> {
+public class RvAccTransactionAdapter extends RecyclerView.Adapter<RvAccTransactionAdapter.ViewHolder> {
 
 
     private Context context;
-    private MainViewModel viewModel;
+    private DetailViewModel viewModel;
     private final LifecycleOwner lifecycleOwner;
     private TimeUtils timeUtils;
     private List<TransactionTbl> list = new ArrayList<>();
 
-    public RvTransactionAdapter(Context context, MainViewModel viewModel, LifecycleOwner lifecycleOwner, TimeUtils timeUtils) {
+    public RvAccTransactionAdapter(Context context,DetailViewModel viewModel, LifecycleOwner lifecycleOwner, TimeUtils timeUtils) {
         this.context = context;
         this.viewModel = viewModel;
         this.lifecycleOwner = lifecycleOwner;
@@ -48,14 +48,13 @@ public class RvTransactionAdapter extends RecyclerView.Adapter<RvTransactionAdap
 
     @NonNull
     @Override
-    public RvTransactionAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RvAccTransactionAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item_transaction, parent, false);
-        return new ViewHolder(view,timeUtils, context);
-    }
+        return new ViewHolder(view,timeUtils,context);    }
 
     @Override
-    public void onBindViewHolder(@NonNull RvTransactionAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RvAccTransactionAdapter.ViewHolder holder, int position) {
         holder.bind(list.get(position),position);
     }
 
@@ -85,6 +84,7 @@ public class RvTransactionAdapter extends RecyclerView.Adapter<RvTransactionAdap
                 binding.getRoot().setBackgroundColor(ContextCompat.getColor(context,R.color.colorWhite));
 
             }
+
             Date date = timeUtils.convertStringToDate(item.getDate());
 
             binding.tvCardName.setText(item.getAccount().getAcountNumber());

@@ -15,6 +15,8 @@ import io.reactivex.schedulers.Schedulers;
 import rezkyaulia.com.bamms_project.base.BaseViewModel;
 import rezkyaulia.com.bamms_project.data.DataManager;
 import rezkyaulia.com.bamms_project.data.database.DatabaseManager;
+import rezkyaulia.com.bamms_project.data.database.entity.BankAccountTbl;
+import rezkyaulia.com.bamms_project.data.database.entity.TransactionTbl;
 import rezkyaulia.com.bamms_project.data.model.LoginRequest;
 import rezkyaulia.com.bamms_project.data.model.LoginResponse;
 import rezkyaulia.com.bamms_project.data.network.NetworkManager;
@@ -64,6 +66,27 @@ public class LoginViewModel extends BaseViewModel {
 
                             dataManager.getDbManager().getUserRepo().add(response.ApiValue.getUserTbl());
                             dataManager.getDbManager().getParameterRepo().add(response.ApiValue.getParameterTbl());
+
+                            List<BankAccountTbl> accountTbls = response.ApiValue.getBankAccountTbls();
+
+                            if (accountTbls != null){
+                                Timber.e("accounts : "+new Gson().toJson(accountTbls));
+                                for (BankAccountTbl account : accountTbls){
+                                    List<TransactionTbl> transactionTbls = account.getTransactionTbls();
+                                    dataManager.getDbManager().getAccountRepo().add(account);
+                                    Timber.e("transactions : "+new Gson().toJson(transactionTbls));
+
+                                    if (transactionTbls != null){
+                                        for(TransactionTbl transaction: transactionTbls){
+                                            dataManager.getDbManager().getTransactionRepo().add(transaction);
+                                        }
+                                    }else{
+                                        statusLD.setValue(Status.LOAD_UNSUCCESS);
+                                        statusLD.setValue(Status.HIDE_PROGRESS);
+                                    }
+
+                                }
+                            }
 
                             String userKey = dataManager.getUserKey();
                             if (userKey != null){

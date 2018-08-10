@@ -1,4 +1,4 @@
-package rezkyaulia.com.bamms_project.ui;
+package rezkyaulia.com.bamms_project.ui.main;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -12,7 +12,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.app.ListFragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
 import android.os.Bundle;
@@ -33,7 +32,6 @@ import rezkyaulia.com.bamms_project.base.BaseActivity;
 import rezkyaulia.com.bamms_project.data.database.entity.BankAccountTbl;
 import rezkyaulia.com.bamms_project.databinding.ActivityMainBinding;
 import rezkyaulia.com.bamms_project.ui.detail.DetailActivity;
-import rezkyaulia.com.bamms_project.ui.main.Status;
 import rezkyaulia.com.bamms_project.ui.main.fragment.ListCardFragment;
 import rezkyaulia.com.bamms_project.ui.main.fragment.ListTransactionFragment;
 import rezkyaulia.com.bamms_project.view.EndDrawerToggle;
@@ -92,6 +90,20 @@ public class MainActivity extends BaseActivity<ActivityMainBinding,MainViewModel
                Intent intent = new Intent(MainActivity.this, DetailActivity.class);
                intent.putExtra("bankAccount",bankAccountTbl);
                startActivity(intent);
+           }
+       });
+
+       getViewModel().getBankAccountsLD().observe(this, new Observer<List<BankAccountTbl>>() {
+           @Override
+           public void onChanged(@Nullable List<BankAccountTbl> accountTbls) {
+               int amount = 0;
+               if (accountTbls != null){
+                   for (BankAccountTbl accountTbl : accountTbls){
+                       amount += accountTbl.getAccountBalance();
+                   }
+               }
+
+               getBinding().tvTotalBalance.setText(amount+"");
            }
        });
     }

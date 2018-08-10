@@ -5,7 +5,7 @@ import android.arch.lifecycle.ViewModel;
 import dagger.Binds;
 import dagger.Module;
 import dagger.multibindings.IntoMap;
-import rezkyaulia.com.bamms_project.ui.MainViewModel;
+import rezkyaulia.com.bamms_project.ui.main.MainViewModel;
 import rezkyaulia.com.bamms_project.ui.detail.DetailViewModel;
 import rezkyaulia.com.bamms_project.ui.login.LoginViewModel;
 import rezkyaulia.com.bamms_project.ui.register.RegisterViewModel;

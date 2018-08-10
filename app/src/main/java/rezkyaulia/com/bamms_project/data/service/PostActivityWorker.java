@@ -2,16 +2,12 @@ package rezkyaulia.com.bamms_project.data.service;
 
 import android.support.annotation.NonNull;
 
-import com.google.gson.Gson;
-
 import javax.inject.Inject;
 
 import androidx.work.Worker;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.schedulers.Schedulers;
 import rezkyaulia.com.bamms_project.base.BaseApplication;
 import rezkyaulia.com.bamms_project.data.DataManager;
-import rezkyaulia.com.bamms_project.data.network.repository.ActivityApi;
 import rezkyaulia.com.bamms_project.di.service.DaggerServiceComponent;
 import rezkyaulia.com.bamms_project.di.service.ServiceComponent;
 import timber.log.Timber;
