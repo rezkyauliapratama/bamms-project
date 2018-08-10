@@ -1,8 +1,10 @@
 package rezkyaulia.com.bamms_project.ui.main.fragment;
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
@@ -16,6 +18,7 @@ import rezkyaulia.com.bamms_project.R;
 import rezkyaulia.com.bamms_project.base.BaseFragment;
 import rezkyaulia.com.bamms_project.databinding.FragmentTransactionBinding;
 import rezkyaulia.com.bamms_project.ui.main.MainViewModel;
+import rezkyaulia.com.bamms_project.ui.main.Status;
 import rezkyaulia.com.bamms_project.ui.main.adapter.RvTransactionAdapter;
 import rezkyaulia.com.bamms_project.util.TimeUtils;
 
@@ -60,6 +63,14 @@ public class ListTransactionFragment extends BaseFragment<FragmentTransactionBin
 
         initView();
 
+        getViewModel().getStatusLD().observe(Objects.requireNonNull(getActivity()), new Observer<Enum>() {
+            @Override
+            public void onChanged(@Nullable Enum anEnum) {
+                if (anEnum.equals(Status.LOAD_UNSUCCESS)){
+                    getBinding().tvNoData.setVisibility(View.VISIBLE);
+                }
+            }
+        });
 
     }
 

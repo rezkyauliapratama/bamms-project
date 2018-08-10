@@ -12,5 +12,10 @@
         android:icon="@drawable/ic_withdraw"
         android:title="@string/withdraw" />
 
+    <item
+    android:id="@+id/transfer"
+    android:icon="@drawable/ic_transfer"
+    android:title="@string/transfer" />
+
 
 </menu>

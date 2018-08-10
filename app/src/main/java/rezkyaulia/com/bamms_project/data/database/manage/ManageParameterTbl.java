@@ -67,4 +67,17 @@ public class ManageParameterTbl implements TransactionInterface<ParameterTbl> {
         });
 
     }
+
+    public Flowable<ParameterTbl> getByCode(String code){
+        return Flowable.fromCallable(() -> {
+            ParameterTbl param = dao.queryBuilder().where(ParameterTblDao.Properties.Code.eq(code)).unique();
+
+            if (param != null) {
+                return param;
+            }else{
+                return null;
+            }
+        });
+
+    }
 }

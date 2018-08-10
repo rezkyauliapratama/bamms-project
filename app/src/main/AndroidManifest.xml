@@ -22,6 +22,9 @@
         <activity android:name=".ui.detail.DetailActivity" />
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.register.RegisterActivity" />
+        <activity android:name=".ui.transaction.CreditActivity" />
+        <activity android:name=".ui.transaction.DebitActivity" />
+        <activity android:name=".ui.transaction.TransferActivity" />
     </application>
 
 </manifest>

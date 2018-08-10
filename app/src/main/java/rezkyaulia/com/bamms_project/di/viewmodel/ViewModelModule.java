@@ -9,6 +9,7 @@ import rezkyaulia.com.bamms_project.ui.main.MainViewModel;
 import rezkyaulia.com.bamms_project.ui.detail.DetailViewModel;
 import rezkyaulia.com.bamms_project.ui.login.LoginViewModel;
 import rezkyaulia.com.bamms_project.ui.register.RegisterViewModel;
+import rezkyaulia.com.bamms_project.ui.transaction.CreditViewModel;
 
 /**
  * Created by Rezky Aulia Pratama on 5/6/18.
@@ -35,5 +36,10 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(RegisterViewModel.class)
     abstract ViewModel bindRegisterViewModel(RegisterViewModel registerViewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(CreditViewModel.class)
+    abstract ViewModel bindCreditViewModel(CreditViewModel creditViewModel);
 
 }

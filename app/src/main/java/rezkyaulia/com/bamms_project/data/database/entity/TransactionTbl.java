@@ -57,6 +57,7 @@ public class TransactionTbl {
     @SerializedName("account")
     private BankAccountTbl account;
 
+
     public BankAccountTbl getAccount() {
         return account;
     }

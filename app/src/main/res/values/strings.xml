@@ -31,5 +31,16 @@
     <string name="select_account_type">- Account type -</string>
     <string name="active">Active</string>
     <string name="last_7_days_transaction">Last 7 days transaction</string>
+    <string name="no_transaction_data">No transaction data</string>
+    <string name="proceed">Proceed</string>
+    <string name="amount">Amount</string>
+    <string name="send_to">Send to</string>
+    <string name="description">Description</string>
+    <string name="idr">IDR</string>
+    <string name="source_account">Source account</string>
+    <string name="destination_account">Destination account</string>
+    <string name="ok">Okay</string>
+    <string name="cancel">Cancel</string>
+    <string name="transfer">Transfer</string>
 
 </resources>

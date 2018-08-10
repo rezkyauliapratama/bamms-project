@@ -58,7 +58,15 @@ public class BankAccountTbl implements Parcelable{
     @Transient
     private String type_code;
 
-/** Used to resolve relations */
+    @Transient
+    @SerializedName("user")
+    private UserTbl userTbl;
+
+    public UserTbl getUserTbl() {
+        return userTbl;
+    }
+
+    /** Used to resolve relations */
 @Generated(hash = 2040040024)
 private transient DaoSession daoSession;
 
@@ -77,7 +85,11 @@ public BankAccountTbl(Long accountId, Long userId, Long type,
     this.description = description;
 }
 
-@Generated(hash = 631984847)
+    public BankAccountTbl(String acountNumber) {
+        this.acountNumber = acountNumber;
+    }
+
+    @Generated(hash = 631984847)
 public BankAccountTbl() {
 }
 
@@ -221,13 +233,6 @@ public void update() {
         dest.writeString(this.type_code);
     }
 
-    /** called by internal mechanisms, do not call yourself. */
-    @Generated(hash = 1527797710)
-    public void __setDaoSession(DaoSession daoSession) {
-        this.daoSession = daoSession;
-        myDao = daoSession != null ? daoSession.getBankAccountTblDao() : null;
-    }
-
     protected BankAccountTbl(Parcel in) {
         this.accountId = (Long) in.readValue(Long.class.getClassLoader());
         this.userId = (Long) in.readValue(Long.class.getClassLoader());
@@ -251,4 +256,16 @@ public void update() {
             return new BankAccountTbl[size];
         }
     };
+
+    @Override
+    public String toString() {
+        return acountNumber;
+    }
+
+    /** called by internal mechanisms, do not call yourself. */
+    @Generated(hash = 1527797710)
+    public void __setDaoSession(DaoSession daoSession) {
+        this.daoSession = daoSession;
+        myDao = daoSession != null ? daoSession.getBankAccountTblDao() : null;
+    }
 }

@@ -3,7 +3,9 @@ package rezkyaulia.com.bamms_project.data.network;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import rezkyaulia.com.bamms_project.data.model.AccountRequest;
 import rezkyaulia.com.bamms_project.data.model.ApiResponse;
+import rezkyaulia.com.bamms_project.data.network.repository.AccountApi;
 import rezkyaulia.com.bamms_project.data.network.repository.TransactionApi;
 import rezkyaulia.com.bamms_project.data.network.repository.UserApi;
 
@@ -26,6 +28,8 @@ public class NetworkManager {
     @Inject
     TransactionApi transactionApi;
 
+    @Inject
+    AccountApi accountApi;
 
     @Inject
     public NetworkManager(){}
@@ -36,6 +40,10 @@ public class NetworkManager {
 
     public TransactionApi getTransactionApi() {
         return transactionApi;
+    }
+
+    public AccountApi getAccountApi() {
+        return accountApi;
     }
 
     public boolean success(ApiResponse result) {

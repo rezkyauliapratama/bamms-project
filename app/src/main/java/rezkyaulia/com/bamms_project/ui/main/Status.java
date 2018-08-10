@@ -7,5 +7,8 @@ public enum Status {
     ERROR,
     START_ACTIVITY,
     SHOW_PROGRESS,
-    HIDE_PROGRESS
+    HIDE_PROGRESS,
+    INSUFFIENCE_BALANCE,
+    ACCOUNT_NOT_FOUND,
+
 }
