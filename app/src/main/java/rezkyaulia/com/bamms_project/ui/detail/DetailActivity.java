@@ -100,6 +100,13 @@ public class DetailActivity extends BaseActivity<ActivityDetailAccountBinding, D
                 }
             }
         });
+
+        getBinding().imageViewBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
 

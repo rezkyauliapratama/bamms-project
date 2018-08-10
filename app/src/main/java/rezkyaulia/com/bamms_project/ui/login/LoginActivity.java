@@ -12,6 +12,7 @@ import rezkyaulia.com.bamms_project.BR;
 import rezkyaulia.com.bamms_project.R;
 import rezkyaulia.com.bamms_project.base.BaseActivity;
 import rezkyaulia.com.bamms_project.databinding.ActivityLoginBinding;
+import rezkyaulia.com.bamms_project.ui.MainAdminActvity;
 import rezkyaulia.com.bamms_project.ui.main.MainActivity;
 import rezkyaulia.com.bamms_project.ui.main.Status;
 import rezkyaulia.com.bamms_project.ui.register.RegisterActivity;
@@ -49,10 +50,13 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding,LoginViewMo
 
     private void initObserver() {
         getViewModel().getStatusLD().observe(this, anEnum -> {
-            if (Objects.requireNonNull(anEnum).equals(Status.LOAD_SUCCESS)){
+            if (Objects.requireNonNull(anEnum).equals(Status.LOGIN_USER)){
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 finish();
-            }else if (anEnum.equals(Status.LOAD_UNSUCCESS)){
+            }if (Objects.requireNonNull(anEnum).equals(Status.LOGIN_MANAGER)){
+                        startActivity(new Intent(LoginActivity.this, MainAdminActvity.class));
+                        finish();
+                    }else if (anEnum.equals(Status.LOAD_UNSUCCESS)){
                 Timber.e("Load unsuccess");
             }else if (anEnum.equals(Status.SHOW_PROGRESS)){
                 getBinding().layoutProgress.setVisibility(View.VISIBLE);
@@ -60,6 +64,9 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding,LoginViewMo
                 getBinding().layoutProgress.setVisibility(View.GONE);
             }else if (anEnum.equals(Status.FILL_BLANK)) {
                 Snackbar.make(getBinding().getRoot(),"Please fill in all blank field",Snackbar.LENGTH_LONG).show();
+
+            }else if (anEnum.equals(Status.INVALID)) {
+                Snackbar.make(getBinding().getRoot(),"Username & password did not match",Snackbar.LENGTH_LONG).show();
 
             }
         }

@@ -70,6 +70,13 @@ public class CreditActivity extends BaseActivity<ActivityCreditBinding,Transacti
 
                 getViewModel().proceedTransaction(name,amount,bankAccountTbl);
         });
+
+        getBinding().imageViewBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     private void initObserver(){

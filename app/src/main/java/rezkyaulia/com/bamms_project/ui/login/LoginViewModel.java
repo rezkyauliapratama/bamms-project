@@ -38,7 +38,12 @@ public class LoginViewModel extends BaseViewModel {
 
     void initialize(){
         if (dataManager.getPrefManager().getUserKey().length() > 0){
-            statusLD.setValue(Status.LOAD_SUCCESS);
+            if (dataManager.getPrefManager().getRole().equals("CUSTOMER"))
+                statusLD.setValue(Status.LOGIN_USER);
+            else if (dataManager.getPrefManager().getRole().equals("MANAGER"))
+                statusLD.setValue(Status.LOGIN_MANAGER);
+
+
         }
     }
     public MutableLiveData<Enum> getStatusLD() {
@@ -91,13 +96,27 @@ public class LoginViewModel extends BaseViewModel {
                             String userKey = dataManager.getUserKey();
                             if (userKey != null){
                                 dataManager.getPrefManager().setUserKey(userKey);
-                                statusLD.setValue(Status.LOAD_SUCCESS);
+                                if (response.ApiValue.getUserTbl().getRoleCode().equals("CUSTOMER")) {
+                                    statusLD.setValue(Status.LOGIN_USER);
+                                    dataManager.getPrefManager().setRole("CUSTOMER");
+
+                                }else {
+                                    statusLD.setValue(Status.LOGIN_MANAGER);
+                                    dataManager.getPrefManager().setRole("MANAGER");
+
+                                }
+
                             }else{
                                 statusLD.setValue(Status.INVALID);
+                                statusLD.setValue(Status.HIDE_PROGRESS);
+
                             }
                             statusLD.setValue(Status.HIDE_PROGRESS);
 
 
+                        }else{
+                            statusLD.setValue(Status.INVALID);
+                            statusLD.setValue(Status.HIDE_PROGRESS);
                         }
 
 

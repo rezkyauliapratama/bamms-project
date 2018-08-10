@@ -70,6 +70,13 @@ public class DebitActivity extends BaseActivity<ActivityDebitBinding, Transactio
 
             getViewModel().proceedDebit(name,amount,bankAccountTbl);
         });
+
+        getBinding().imageViewBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     private void initObserver(){

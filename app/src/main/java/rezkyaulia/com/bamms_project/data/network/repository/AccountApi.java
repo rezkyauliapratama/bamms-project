@@ -2,6 +2,7 @@ package rezkyaulia.com.bamms_project.data.network.repository;
 
 import com.google.gson.Gson;
 import com.rezkyaulia.android.light_optimization_data.NetworkClient;
+import com.vladsch.flexmark.internal.PostProcessorManager;
 
 import javax.inject.Inject;
 
@@ -44,6 +45,19 @@ public class AccountApi extends BaseApi {
 
 
 
+    public Single<Response> getByAccountManagerSingle(){
+        return Single.create(emitter -> {
+            try {
+                Response response = postGetAccountByManager();
+                emitter.onSuccess(response);
+            }catch (Exception e){
+                emitter.onError(e);
+            }
+
+
+        });
+    }
+
     private Response postGetAccountByNumber(AccountRequest req){
         if (mNetworkClient == null){
             throw new NullPointerException("Network client == null");
@@ -57,6 +71,23 @@ public class AccountApi extends BaseApi {
                     .getSyncFuture();
         } catch (Exception e) {
             Timber.e(e,"getAccountTransactionsByDate Error ");
+        }
+
+        return null;
+    }
+
+    private Response postGetAccountByManager(){
+        if (mNetworkClient == null){
+            throw new NullPointerException("Network client == null");
+        }
+        try {
+            Timber.e("header : "+new Gson().toJson(getUserHeaderWithParam()));
+            return mNetworkClient.withUrl(mBaseUrl.concat("/accountsManager"))
+                    .as(Response.class,NetworkClient.POST)
+                    .setHeaders(getUserHeaderWithParam())
+                    .getSyncFuture();
+        } catch (Exception e) {
+            Timber.e(e,"postGetAccountByManager Error ");
         }
 
         return null;

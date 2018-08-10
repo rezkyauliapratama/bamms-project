@@ -17,6 +17,7 @@ public class PreferencesManager {
     private final String FONT_SIZE_KEY = "FONT_SIZE_KEY";
     private final String USER_KEY = "USER_KEY";
     private final String LANGUAGE_LOCALE = "LANGUAGE_LOCALE";
+    private final String ROLE = "ROLE";
 
 
     @Inject
@@ -61,6 +62,15 @@ public class PreferencesManager {
     }
     public String getLocale() {
         return mSecurePreferences.getString(LANGUAGE_LOCALE,"en");
+    }
+
+    public void setRole(String role) {
+        SecurePreferences.Editor editor = mSecurePreferences.edit();
+        editor.putString(ROLE, role);
+        editor.apply();
+    }
+    public String getRole() {
+        return mSecurePreferences.getString(ROLE,"");
     }
 
 }

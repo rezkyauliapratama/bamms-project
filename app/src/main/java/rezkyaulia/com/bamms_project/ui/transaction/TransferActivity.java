@@ -69,6 +69,13 @@ public class TransferActivity extends BaseActivity<ActivityTransferBinding, Tran
 
             getViewModel().checkAccountNumber(destinationNumber);
         });
+
+        getBinding().imageViewBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     private void showDialogConfirmation(BankAccountTbl accountTbl){

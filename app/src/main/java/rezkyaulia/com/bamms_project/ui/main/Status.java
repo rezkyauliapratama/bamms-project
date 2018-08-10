@@ -12,7 +12,9 @@ public enum Status {
     ACCOUNT_NOT_FOUND,
     FILL_BLANK,
     PASSWORD_NOT_MATCH,
-    LOGOUT
+    LOGOUT,
+    LOGIN_MANAGER,
+    LOGIN_USER
 
 
 }
