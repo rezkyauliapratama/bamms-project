@@ -1,5 +1,8 @@
 package rezkyaulia.com.bamms_project.data.database.entity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import org.greenrobot.greendao.annotation.Entity;
@@ -18,7 +21,7 @@ import org.greenrobot.greendao.annotation.Transient;
 @Entity(nameInDb = "TransactionTbl", indexes = {
         @Index(value = "_id", unique = true)
 })
-public class TransactionTbl {
+public class TransactionTbl implements Parcelable {
 
     @Id(autoincrement = true)
     @Property(nameInDb = "_id")
@@ -224,12 +227,54 @@ public void update() {
     myDao.update(this);
 }
 
-/** called by internal mechanisms, do not call yourself. */
-@Generated(hash = 231064454)
-public void __setDaoSession(DaoSession daoSession) {
-    this.daoSession = daoSession;
-    myDao = daoSession != null ? daoSession.getTransactionTblDao() : null;
-}
+@Override
+    public int describeContents() {
+        return 0;
+    }
 
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(this._id);
+        dest.writeValue(this.transactionId);
+        dest.writeValue(this.accountId);
+        dest.writeValue(this.type);
+        dest.writeString(this.date);
+        dest.writeString(this.name);
+        dest.writeInt(this.amount);
+        dest.writeParcelable(this.bankAccountTbl, flags);
+        dest.writeParcelable(this.account, flags);
+        dest.writeString(this.type_code);
+    }
 
+    /** called by internal mechanisms, do not call yourself. */
+    @Generated(hash = 231064454)
+    public void __setDaoSession(DaoSession daoSession) {
+        this.daoSession = daoSession;
+        myDao = daoSession != null ? daoSession.getTransactionTblDao() : null;
+    }
+
+    protected TransactionTbl(Parcel in) {
+        this._id = (Long) in.readValue(Long.class.getClassLoader());
+        this.transactionId = (Long) in.readValue(Long.class.getClassLoader());
+        this.accountId = (Long) in.readValue(Long.class.getClassLoader());
+        this.type = (Long) in.readValue(Long.class.getClassLoader());
+        this.date = in.readString();
+        this.name = in.readString();
+        this.amount = in.readInt();
+        this.bankAccountTbl = in.readParcelable(BankAccountTbl.class.getClassLoader());
+        this.account = in.readParcelable(BankAccountTbl.class.getClassLoader());
+        this.type_code = in.readString();
+    }
+
+    public static final Creator<TransactionTbl> CREATOR = new Creator<TransactionTbl>() {
+        @Override
+        public TransactionTbl createFromParcel(Parcel source) {
+            return new TransactionTbl(source);
+        }
+
+        @Override
+        public TransactionTbl[] newArray(int size) {
+            return new TransactionTbl[size];
+        }
+    };
 }

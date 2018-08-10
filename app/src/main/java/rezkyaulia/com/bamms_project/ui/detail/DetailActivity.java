@@ -30,6 +30,7 @@ import rezkyaulia.com.bamms_project.ui.main.Status;
 import rezkyaulia.com.bamms_project.ui.transaction.CreditActivity;
 import rezkyaulia.com.bamms_project.ui.transaction.DebitActivity;
 import rezkyaulia.com.bamms_project.ui.transaction.TransferActivity;
+import rezkyaulia.com.bamms_project.util.ParameterConstant;
 import rezkyaulia.com.bamms_project.util.TimeUtils;
 import timber.log.Timber;
 
@@ -38,6 +39,9 @@ public class DetailActivity extends BaseActivity<ActivityDetailAccountBinding, D
 
     @Inject
     TimeUtils timeUtils;
+
+    @Inject
+    ParameterConstant constant;
 
     @Override
     public int getLayoutId() {
@@ -107,6 +111,13 @@ public class DetailActivity extends BaseActivity<ActivityDetailAccountBinding, D
                 finish();
             }
         });
+
+        if (bankAccountTbl.getType_code().equals(constant.MASTERCARD)){
+            getBinding().ivIcon.setImageResource(R.drawable.ic_mastercard);
+        }else{
+            getBinding().ivIcon.setImageResource(R.drawable.ic_visa);
+
+        }
     }
 
 
