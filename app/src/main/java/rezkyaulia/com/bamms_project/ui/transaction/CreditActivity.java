@@ -1,11 +1,9 @@
 package rezkyaulia.com.bamms_project.ui.transaction;
 
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -21,15 +19,15 @@ import rezkyaulia.com.bamms_project.ui.main.Status;
 import rezkyaulia.com.bamms_project.util.SpinnerArrayAdapter;
 import timber.log.Timber;
 
-public class CreditActivity extends BaseActivity<ActivityCreditBinding,CreditViewModel> {
+public class CreditActivity extends BaseActivity<ActivityCreditBinding,TransactionViewModel> {
     @Override
     public int getLayoutId() {
         return R.layout.activity_credit;
     }
 
     @Override
-    public CreditViewModel getViewModel() {
-        return ViewModelProviders.of(this,getViewModelFactory()).get(CreditViewModel.class);
+    public TransactionViewModel getViewModel() {
+        return ViewModelProviders.of(this,getViewModelFactory()).get(TransactionViewModel.class);
     }
 
     @Override
@@ -80,12 +78,17 @@ public class CreditActivity extends BaseActivity<ActivityCreditBinding,CreditVie
                         finish();
                     }else if (anEnum.equals(Status.LOAD_UNSUCCESS)){
                         Timber.e("Load unsuccess");
+                        Snackbar.make(getBinding().getRoot(),"Sorry, cannot process your transaction. Please try again!",Snackbar.LENGTH_LONG).show();
+
                     }else if (anEnum.equals(Status.SHOW_PROGRESS)){
                         getBinding().layoutProgress.setVisibility(View.VISIBLE);
                     }else if (anEnum.equals(Status.HIDE_PROGRESS)){
                         getBinding().layoutProgress.setVisibility(View.GONE);
                     }else if (anEnum.equals(Status.LOAD_UNSUCCESS)){
                         Snackbar.make(getBinding().getRoot(),"Cannot add new transaction",Snackbar.LENGTH_LONG).show();
+                    }else if (anEnum.equals(Status.FILL_BLANK)) {
+                        Snackbar.make(getBinding().getRoot(),"Please fill in all blank field",Snackbar.LENGTH_LONG).show();
+
                     }
                 }
         );

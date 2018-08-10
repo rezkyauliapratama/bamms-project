@@ -89,7 +89,11 @@ public class RvTransactionAdapter extends RecyclerView.Adapter<RvTransactionAdap
 
             binding.tvCardName.setText(item.getAccount().getAcountNumber());
             binding.tvTransactionDate.setText(timeUtils.getUserFriendlyDateTime(date));
-            binding.tvTransactionAmount.setText(item.getAmount()+"");
+            if (item.getType_code().equals("DEBIT")){
+                binding.tvTransactionAmount.setText("- "+item.getAmount());
+            }else{
+                binding.tvTransactionAmount.setText(""+item.getAmount());
+            }
             binding.tvTransactionName.setText(item.getName());
         }
     }

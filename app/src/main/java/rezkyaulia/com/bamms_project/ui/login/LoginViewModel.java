@@ -108,7 +108,7 @@ public class LoginViewModel extends BaseViewModel {
 
                     }));
         }else{
-            statusLD.setValue(Status.INVALID);
+            statusLD.setValue(Status.FILL_BLANK);
             statusLD.setValue(Status.HIDE_PROGRESS);
 
         }

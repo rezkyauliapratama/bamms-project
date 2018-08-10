@@ -57,6 +57,17 @@ public class TransactionTbl {
     @SerializedName("account")
     private BankAccountTbl account;
 
+    @Transient
+    @SerializedName("type_code")
+    private String type_code;
+
+    public String getType_code() {
+        return type_code;
+    }
+
+    public void setType_code(String type_code) {
+        this.type_code = type_code;
+    }
 
     public BankAccountTbl getAccount() {
         return account;

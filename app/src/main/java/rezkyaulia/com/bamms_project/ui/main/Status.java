@@ -10,5 +10,9 @@ public enum Status {
     HIDE_PROGRESS,
     INSUFFIENCE_BALANCE,
     ACCOUNT_NOT_FOUND,
+    FILL_BLANK,
+    PASSWORD_NOT_MATCH,
+    LOGOUT
+
 
 }

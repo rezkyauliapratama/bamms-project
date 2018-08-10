@@ -1,5 +1,6 @@
 package rezkyaulia.com.bamms_project.ui.detail;
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
@@ -71,6 +72,12 @@ public class DetailActivity extends BaseActivity<ActivityDetailAccountBinding, D
         initObserver();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getViewModel().initialize(bankAccountTbl.getAccountId());
+    }
+
     private void initView() {
         getBinding().tvCardName.setText(bankAccountTbl.getAcountNumber());
         getBinding().tvCardStaths.setText("Active");
@@ -97,6 +104,13 @@ public class DetailActivity extends BaseActivity<ActivityDetailAccountBinding, D
 
 
     private void initObserver() {
+        getViewModel().getBankAccountTblLD().observe(this, new Observer<BankAccountTbl>() {
+            @Override
+            public void onChanged(@Nullable BankAccountTbl accountTbl) {
+                getBinding().tvTotalBalance.setText(String.valueOf(accountTbl.getAccountBalance()));
+
+            }
+        });
         getViewModel().getStatusLD().observe(this, anEnum -> {
                     if (Objects.requireNonNull(anEnum).equals(Status.LOAD_SUCCESS)){
 

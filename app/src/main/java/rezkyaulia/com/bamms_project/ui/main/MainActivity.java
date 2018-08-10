@@ -2,6 +2,7 @@ package rezkyaulia.com.bamms_project.ui.main;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -13,8 +14,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewCompat;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +28,7 @@ import com.app.infideap.stylishwidget.view.ATextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import rezkyaulia.com.bamms_project.BR;
 import rezkyaulia.com.bamms_project.R;
@@ -32,6 +36,7 @@ import rezkyaulia.com.bamms_project.base.BaseActivity;
 import rezkyaulia.com.bamms_project.data.database.entity.BankAccountTbl;
 import rezkyaulia.com.bamms_project.databinding.ActivityMainBinding;
 import rezkyaulia.com.bamms_project.ui.detail.DetailActivity;
+import rezkyaulia.com.bamms_project.ui.login.LoginActivity;
 import rezkyaulia.com.bamms_project.ui.main.fragment.ListCardFragment;
 import rezkyaulia.com.bamms_project.ui.main.fragment.ListTransactionFragment;
 import rezkyaulia.com.bamms_project.view.EndDrawerToggle;
@@ -82,6 +87,11 @@ public class MainActivity extends BaseActivity<ActivityMainBinding,MainViewModel
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getViewModel().initialize();
+    }
 
     private void initObserver() {
        getViewModel().getBankAccountLD().observe(this, new Observer<BankAccountTbl>() {
@@ -106,6 +116,14 @@ public class MainActivity extends BaseActivity<ActivityMainBinding,MainViewModel
                getBinding().tvTotalBalance.setText(amount+"");
            }
        });
+
+        getViewModel().getStatusLD().observe(this, anEnum -> {
+                    if (Objects.requireNonNull(anEnum).equals(Status.LOGOUT)){
+                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                        finish();
+                    }
+                }
+        );
     }
 
         /*init navigation layout*/
@@ -237,10 +255,42 @@ public class MainActivity extends BaseActivity<ActivityMainBinding,MainViewModel
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            return false;
-        }
+            int id = item.getItemId();
 
-        protected class LfPagerAdapter extends FragmentStatePagerAdapter {
+            showPage(id);
+
+            getBinding().drawerLayout.closeDrawer(GravityCompat.END);
+            return true;        }
+
+    private void showPage(int id) {
+        if (id == R.id.nav_logout) {
+            logOut();
+        }
+    }
+
+    private void logOut() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                .setMessage(R.string.logout_confirmation)
+
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        getViewModel().logout();
+
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    protected class LfPagerAdapter extends FragmentStatePagerAdapter {
 
         private static final int NUM_ITEMS = 2;
 

@@ -3,6 +3,7 @@ package rezkyaulia.com.bamms_project.ui.login;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 
 import java.util.Objects;
@@ -57,6 +58,9 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding,LoginViewMo
                 getBinding().layoutProgress.setVisibility(View.VISIBLE);
             }else if (anEnum.equals(Status.HIDE_PROGRESS)){
                 getBinding().layoutProgress.setVisibility(View.GONE);
+            }else if (anEnum.equals(Status.FILL_BLANK)) {
+                Snackbar.make(getBinding().getRoot(),"Please fill in all blank field",Snackbar.LENGTH_LONG).show();
+
             }
         }
         );

@@ -5,6 +5,7 @@ import android.databinding.ObservableField;
 
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -20,6 +21,7 @@ import rezkyaulia.com.bamms_project.data.DataManager;
 import rezkyaulia.com.bamms_project.data.DummyData;
 import rezkyaulia.com.bamms_project.data.database.DatabaseManager;
 import rezkyaulia.com.bamms_project.data.database.entity.BankAccountTbl;
+import rezkyaulia.com.bamms_project.data.database.entity.ParameterTbl;
 import rezkyaulia.com.bamms_project.data.database.entity.TransactionTbl;
 import rezkyaulia.com.bamms_project.data.model.LoginRequest;
 import rezkyaulia.com.bamms_project.data.model.TransactionRequest;
@@ -62,7 +64,7 @@ public class MainViewModel extends BaseViewModel {
         return statusLD;
     }
 
-    void initialize(){
+    public void initialize(){
         Timber.e("initialize");
         Flowable<List<BankAccountTbl>> accountTblObservable = dataManager.getDbManager().getAccountRepo().getAll();
 
@@ -88,6 +90,22 @@ public class MainViewModel extends BaseViewModel {
                 .subscribe(response -> {
                     Timber.e("onsuccess : "+ new Gson().toJson(response));
                     if (dataManager.getNetworkManager().success(response) && response.ApiList != null){
+                        List<TransactionTbl>transactionTbls = new ArrayList<>();
+                        transactionTbls.addAll(response.ApiList);
+
+                        for (TransactionTbl transactionTbl :  transactionTbls){
+                            Observable<ParameterTbl> parameterTblFlowable = dataManager.getDbManager().getParameterRepo().get(transactionTbl.getType());
+
+                            getCompositeDisposible().add(parameterTblFlowable.subscribe(parameterTbl -> {
+                                if (parameterTbl != null) {
+                                    transactionTbl.setType_code(parameterTbl.getCode());
+                                } else {
+                                    throw new NullPointerException("accountTbls is null");
+                                }
+                            }, throwable -> {statusLD.setValue(Status.ERROR);
+                                statusLD.setValue(Status.HIDE_PROGRESS);
+                            }));
+                        }
                         transactionsLD.setValue(response.ApiList);
                     }else{
                         statusLD.setValue(Status.LOAD_UNSUCCESS);
@@ -109,5 +127,15 @@ public class MainViewModel extends BaseViewModel {
 
     public MutableLiveData<BankAccountTbl> getBankAccountLD() {
         return bankAccountLD;
+    }
+
+    public void logout() {
+        dataManager.getPrefManager().setUserKey(null);
+        dataManager.getDbManager().getUserRepo().removeAll();
+        dataManager.getDbManager().getAccountRepo().removeAll();
+        dataManager.getDbManager().getTransactionRepo().removeAll();
+        dataManager.getDbManager().getParameterRepo().removeAll();
+
+        statusLD.setValue(Status.LOGOUT);
     }
 }

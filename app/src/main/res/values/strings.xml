@@ -42,5 +42,8 @@
     <string name="ok">Okay</string>
     <string name="cancel">Cancel</string>
     <string name="transfer">Transfer</string>
+    <string name="logout">Logout</string>
+    <string name="logout_confirmation">Are you sure want to logout ?</string>
+    <string name="yes">Yes</string>
 
 </resources>

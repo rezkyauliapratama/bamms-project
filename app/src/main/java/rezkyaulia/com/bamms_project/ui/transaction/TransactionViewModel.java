@@ -25,7 +25,7 @@ import rezkyaulia.com.bamms_project.util.ParameterConstant;
 import rezkyaulia.com.bamms_project.util.TimeUtils;
 import timber.log.Timber;
 
-public class CreditViewModel extends BaseViewModel {
+public class TransactionViewModel extends BaseViewModel {
 
     private MutableLiveData<List<BankAccountTbl>> bankAccountsLD = new MutableLiveData<>();
     private MutableLiveData<Enum> statusLD = new MutableLiveData<>();
@@ -37,7 +37,7 @@ public class CreditViewModel extends BaseViewModel {
     private ParameterConstant constant;
 
     @Inject
-    public CreditViewModel(DataManager dataManager, TimeUtils timeUtils, ParameterConstant constant) {
+    public TransactionViewModel(DataManager dataManager, TimeUtils timeUtils, ParameterConstant constant) {
         this.dataManager = dataManager;
         this.timeUtils = timeUtils;
         this.constant = constant;
@@ -73,24 +73,35 @@ public class CreditViewModel extends BaseViewModel {
 
 
     public void proceedTransaction(String name, int amount, BankAccountTbl bankAccountTbl) {
-        Flowable<ParameterTbl> parameterTblFlowable = dataManager.getDbManager().getParameterRepo().getByCode(constant.CREDIT);
+        statusLD.setValue(Status.SHOW_PROGRESS);
 
-        getCompositeDisposible().add(parameterTblFlowable.subscribe(parameterTbl -> {
-            if (parameterTbl != null) {
-                Calendar cal = Calendar.getInstance();
-                TransactionTbl transactionTbl = new TransactionTbl();
-                transactionTbl.setAccountId(bankAccountTbl.getAccountId());
-                transactionTbl.setAmount(amount);
-                transactionTbl.setName(name);
-                transactionTbl.setDate(timeUtils.getDateForApi(cal.getTime()));
-                transactionTbl.setType(parameterTbl.getParameterId());
+        if (!name.isEmpty() && amount > 0 && bankAccountTbl != null){
+            Flowable<ParameterTbl> parameterTblFlowable = dataManager.getDbManager().getParameterRepo().getByCode(constant.CREDIT);
+
+            getCompositeDisposible().add(parameterTblFlowable.subscribe(parameterTbl -> {
+                if (parameterTbl != null) {
+                    Calendar cal = Calendar.getInstance();
+                    TransactionTbl transactionTbl = new TransactionTbl();
+                    transactionTbl.setAccountId(bankAccountTbl.getAccountId());
+                    transactionTbl.setAmount(amount);
+                    transactionTbl.setName(name);
+                    transactionTbl.setDate(timeUtils.getDateForApi(cal.getTime()));
+                    transactionTbl.setType(parameterTbl.getParameterId());
 
 
-                uploadTransaction(transactionTbl);
-            } else {
-                throw new NullPointerException("accountTbls is null");
-            }
-        }, throwable -> statusLD.setValue(Status.ERROR)));
+                    uploadTransaction(transactionTbl);
+                } else {
+                    throw new NullPointerException("accountTbls is null");
+                }
+            }, throwable -> {statusLD.setValue(Status.ERROR);
+                statusLD.setValue(Status.HIDE_PROGRESS);
+            }));
+        }else{
+            statusLD.setValue(Status.FILL_BLANK);
+            statusLD.setValue(Status.HIDE_PROGRESS);
+
+        }
+
 
 
     }
@@ -120,34 +131,50 @@ public class CreditViewModel extends BaseViewModel {
     }
 
     public void proceedDebit(String name, int amount, BankAccountTbl bankAccountTbl) {
-        if (amount < bankAccountTbl.getAccountBalance()){
-            Flowable<ParameterTbl> parameterTblFlowable = dataManager.getDbManager().getParameterRepo().getByCode(constant.DEBIT);
+        statusLD.setValue(Status.SHOW_PROGRESS);
 
-            getCompositeDisposible().add(parameterTblFlowable.subscribe(parameterTbl -> {
-                if (parameterTbl != null) {
-                    Calendar cal = Calendar.getInstance();
-                    TransactionTbl transactionTbl = new TransactionTbl();
-                    transactionTbl.setAccountId(bankAccountTbl.getAccountId());
-                    transactionTbl.setAmount(amount);
-                    transactionTbl.setName(name);
-                    transactionTbl.setDate(timeUtils.getDateForApi(cal.getTime()));
-                    transactionTbl.setType(parameterTbl.getParameterId());
+        if (!name.isEmpty() && amount > 0 && bankAccountTbl != null){
+            if (amount < bankAccountTbl.getAccountBalance()){
+                Flowable<ParameterTbl> parameterTblFlowable = dataManager.getDbManager().getParameterRepo().getByCode(constant.DEBIT);
+
+                getCompositeDisposible().add(parameterTblFlowable.subscribe(parameterTbl -> {
+                    if (parameterTbl != null) {
+                        Calendar cal = Calendar.getInstance();
+                        TransactionTbl transactionTbl = new TransactionTbl();
+                        transactionTbl.setAccountId(bankAccountTbl.getAccountId());
+                        transactionTbl.setAmount(amount);
+                        transactionTbl.setName(name);
+                        transactionTbl.setDate(timeUtils.getDateForApi(cal.getTime()));
+                        transactionTbl.setType(parameterTbl.getParameterId());
 
 
-                    uploadTransaction(transactionTbl);
-                } else {
-                    throw new NullPointerException("accountTbls is null");
-                }
-            }, throwable -> statusLD.setValue(Status.ERROR)));
+                        uploadTransaction(transactionTbl);
+                    } else {
+                        throw new NullPointerException("accountTbls is null");
+                    }
+                }, throwable -> {statusLD.setValue(Status.ERROR);
+                            statusLD.setValue(Status.HIDE_PROGRESS);
 
+                        }
+                ));
+
+            }else{
+                statusLD.setValue(Status.INSUFFIENCE_BALANCE);
+                statusLD.setValue(Status.HIDE_PROGRESS);
+
+            }
         }else{
-            statusLD.setValue(Status.INSUFFIENCE_BALANCE);
+            statusLD.setValue(Status.FILL_BLANK);
+            statusLD.setValue(Status.HIDE_PROGRESS);
+
         }
 
 
     }
 
     public void proceedTransfer(String name, int amount, BankAccountTbl bankAccountTbl, String destinationNumber) {
+        statusLD.setValue(Status.SHOW_PROGRESS);
+
         Calendar calendar = Calendar.getInstance();
 
         TransferRequest transferRequest = new TransferRequest(bankAccountTbl.getAcountNumber(),destinationNumber,
@@ -178,6 +205,8 @@ public class CreditViewModel extends BaseViewModel {
     }
 
     public void checkAccountNumber(String destinationNumber) {
+        statusLD.setValue(Status.SHOW_PROGRESS);
+
         AccountRequest accountRequest= new AccountRequest(destinationNumber);
         getCompositeDisposible().add(dataManager.getNetworkManager().getAccountApi()
                 .getByAccountNumberSingle(accountRequest).subscribeOn(Schedulers.io())

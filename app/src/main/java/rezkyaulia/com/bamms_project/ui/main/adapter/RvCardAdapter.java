@@ -94,6 +94,7 @@ public class RvCardAdapter extends RecyclerView.Adapter<RvCardAdapter.ViewHolder
             binding.tvCardName.setText(bankAccountTbl.getAcountNumber());
             binding.tvCardStaths.setText(R.string.active);
             binding.tvBalance.setText(bankAccountTbl.getAccountBalance()+"");
+
         }
     }
 }

@@ -2,8 +2,6 @@ package rezkyaulia.com.bamms_project.ui.transaction;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -18,21 +16,19 @@ import rezkyaulia.com.bamms_project.BR;
 import rezkyaulia.com.bamms_project.R;
 import rezkyaulia.com.bamms_project.base.BaseActivity;
 import rezkyaulia.com.bamms_project.data.database.entity.BankAccountTbl;
-import rezkyaulia.com.bamms_project.databinding.ActivityDebitBinding;
 import rezkyaulia.com.bamms_project.databinding.ActivityTransferBinding;
 import rezkyaulia.com.bamms_project.ui.main.Status;
 import rezkyaulia.com.bamms_project.util.SpinnerArrayAdapter;
-import timber.log.Timber;
 
-public class TransferActivity extends BaseActivity<ActivityTransferBinding, CreditViewModel> {
+public class TransferActivity extends BaseActivity<ActivityTransferBinding, TransactionViewModel> {
     @Override
     public int getLayoutId() {
         return R.layout.activity_transfer;
     }
 
     @Override
-    public CreditViewModel getViewModel() {
-        return ViewModelProviders.of(this,getViewModelFactory()).get(CreditViewModel.class);
+    public TransactionViewModel getViewModel() {
+        return ViewModelProviders.of(this,getViewModelFactory()).get(TransactionViewModel.class);
     }
 
     @Override
@@ -109,6 +105,7 @@ public class TransferActivity extends BaseActivity<ActivityTransferBinding, Cred
                     if (Objects.requireNonNull(anEnum).equals(Status.LOAD_SUCCESS)){
                         finish();
                     }else if (anEnum.equals(Status.LOAD_UNSUCCESS)){
+                        Snackbar.make(getBinding().getRoot(),"Sorry, cannot process your transaction. Please try again!",Snackbar.LENGTH_LONG).show();
 
                     }else if (anEnum.equals(Status.SHOW_PROGRESS)){
                         getBinding().layoutProgress.setVisibility(View.VISIBLE);
@@ -120,6 +117,9 @@ public class TransferActivity extends BaseActivity<ActivityTransferBinding, Cred
                         Snackbar.make(getBinding().getRoot(),"Insuffience balance, please change source account",Snackbar.LENGTH_LONG).show();
                     }else if (anEnum.equals(Status.ACCOUNT_NOT_FOUND)){
                         Snackbar.make(getBinding().getRoot(),"Sorry, your destination number is wrong",Snackbar.LENGTH_LONG).show();
+                    }else if (anEnum.equals(Status.FILL_BLANK)) {
+                        Snackbar.make(getBinding().getRoot(),"Please fill in all blank field",Snackbar.LENGTH_LONG).show();
+
                     }
                 }
         );

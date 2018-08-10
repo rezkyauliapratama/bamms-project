@@ -19,15 +19,15 @@ import rezkyaulia.com.bamms_project.ui.main.Status;
 import rezkyaulia.com.bamms_project.util.SpinnerArrayAdapter;
 import timber.log.Timber;
 
-public class DebitActivity extends BaseActivity<ActivityDebitBinding, CreditViewModel> {
+public class DebitActivity extends BaseActivity<ActivityDebitBinding, TransactionViewModel> {
     @Override
     public int getLayoutId() {
         return R.layout.activity_debit;
     }
 
     @Override
-    public CreditViewModel getViewModel() {
-        return ViewModelProviders.of(this,getViewModelFactory()).get(CreditViewModel.class);
+    public TransactionViewModel getViewModel() {
+        return ViewModelProviders.of(this,getViewModelFactory()).get(TransactionViewModel.class);
     }
 
     @Override
@@ -77,7 +77,7 @@ public class DebitActivity extends BaseActivity<ActivityDebitBinding, CreditView
                     if (Objects.requireNonNull(anEnum).equals(Status.LOAD_SUCCESS)){
                         finish();
                     }else if (anEnum.equals(Status.LOAD_UNSUCCESS)){
-                        Timber.e("Load unsuccess");
+                        Snackbar.make(getBinding().getRoot(),"Sorry, cannot process your transaction. Please try again!",Snackbar.LENGTH_LONG).show();
                     }else if (anEnum.equals(Status.SHOW_PROGRESS)){
                         getBinding().layoutProgress.setVisibility(View.VISIBLE);
                     }else if (anEnum.equals(Status.HIDE_PROGRESS)){
@@ -86,6 +86,9 @@ public class DebitActivity extends BaseActivity<ActivityDebitBinding, CreditView
                         Snackbar.make(getBinding().getRoot(),"Cannot add new transaction",Snackbar.LENGTH_LONG).show();
                     }else if (anEnum.equals(Status.INSUFFIENCE_BALANCE)){
                         Snackbar.make(getBinding().getRoot(),"Insuffience balance, please change source account",Snackbar.LENGTH_LONG).show();
+                    }else if (anEnum.equals(Status.FILL_BLANK)) {
+                        Snackbar.make(getBinding().getRoot(),"Please fill in all blank field",Snackbar.LENGTH_LONG).show();
+
                     }
                 }
         );

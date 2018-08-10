@@ -2,6 +2,7 @@ package rezkyaulia.com.bamms_project.ui.register;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -82,6 +83,13 @@ public class RegisterActivity extends BaseActivity<ActivityRegisterBinding,Regis
                         getBinding().layoutProgress.setVisibility(View.VISIBLE);
                     } else if (anEnum.equals(Status.HIDE_PROGRESS)) {
                         getBinding().layoutProgress.setVisibility(View.GONE);
+                    }else if (anEnum.equals(Status.PASSWORD_NOT_MATCH)) {
+
+                        Snackbar.make(getBinding().getRoot(),"Password and retype password did not match",Snackbar.LENGTH_LONG).show();
+
+                    }else if (anEnum.equals(Status.FILL_BLANK)) {
+                        Snackbar.make(getBinding().getRoot(),"Please fill in all blank field",Snackbar.LENGTH_LONG).show();
+
                     }
                 }
         );
