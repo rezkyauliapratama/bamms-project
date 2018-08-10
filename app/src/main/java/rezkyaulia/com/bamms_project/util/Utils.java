@@ -5,9 +5,11 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.telephony.TelephonyManager;
+import android.util.DisplayMetrics;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -15,6 +17,8 @@ import java.util.Objects;
 import java.util.UUID;
 
 import rezkyaulia.com.bamms_project.di.application.ApplicationContext;
+
+import static java.lang.Math.round;
 
 
 /**
@@ -98,4 +102,9 @@ public class Utils {
         return locale;
     }
 
+    public float convertDpToPixel(float dp) {
+        DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
+        float px = dp * (metrics.densityDpi / 160f);
+        return round(px);
+    }
 }

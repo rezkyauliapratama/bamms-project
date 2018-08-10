@@ -147,11 +147,6 @@ public abstract class BaseDialogFragment<T extends ViewDataBinding, V extends Ba
         return mActivity != null && mActivity.isNetworkConnected();
     }
 
-    public void openActivityOnTokenExpire() {
-        if (mActivity != null) {
-            mActivity.openActivityOnTokenExpire();
-        }
-    }
 
     public String[] getBundleValue() {
         return bundleValue;

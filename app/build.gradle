@@ -105,12 +105,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
 
-    //fireabase
-    /*implementation "com.google.firebase:firebase-core:$rootProject.firebaseVersion"
-    implementation "com.google.firebase:firebase-messaging:$rootProject.firebaseMessageVersion"
-    implementation "com.google.firebase:firebase-auth:$rootProject.firebaseAuthVersion"
-    implementation "com.google.android.gms:play-services-auth:$rootProject.gmsVersion"*/
-
+    implementation 'com.github.kobakei:MaterialFabSpeedDial:1.2.0'
     //gson
     implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
 

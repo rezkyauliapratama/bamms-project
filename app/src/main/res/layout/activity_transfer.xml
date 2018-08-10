@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="rezkyaulia.com.bamms_project.ui.transaction.TransactionViewModel" />
+
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:theme="@style/AppTheme"
+        android:background="@color/background_material_white"
+        tools:context=".ui.main.MainActivity">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background_material_white"
+            app:elevation="4dp">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:background="@color/background_material_white"
+                android:layout_height="?android:attr/actionBarSize">
+
+                <LinearLayout
+                    android:id="@+id/linearLayout_toolbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView_back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tint="@color/icon"
+                        android:paddingRight="@dimen/margin_normal"
+                        android:src="@drawable/ic_arrow_back"/>
+
+                    <com.app.infideap.stylishwidget.view.ATextView
+                        android:id="@+id/textView_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:layout_centerVertical="true"
+                        android:text="@string/app_name"
+                        android:textAppearance="@style/TextStyle.Small"
+                        android:textColor="@color/primaryTextColor" />
+
+                </LinearLayout>
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_content_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            >
+
+            <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/margin_small"
+                android:paddingRight="@dimen/margin_small"
+                android:layout_centerInParent="true"
+                android:layout_above="@+id/textView_signIn"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:id="@+id/linearLayout">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/margin_small"
+                        android:paddingRight="@dimen/margin_small"
+                        android:layout_margin="@dimen/margin_large">
+
+
+                        <com.app.infideap.stylishwidget.view.ATextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/amount"
+                            android:textAppearance="@style/TextStyle.Medium"
+                            />
+
+                        <android.support.v4.widget.Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/margin_xsmall" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <com.app.infideap.stylishwidget.view.ATextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="@style/TextStyle.Medium"
+                                android:text="@string/idr"
+                                android:textColor="@color/primaryTextColor"/>
+
+                            <com.app.infideap.stylishwidget.view.AEditText
+                                android:id="@+id/et_amount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="@dimen/margin_small"
+                                android:inputType="number"
+                                />
+
+                        </LinearLayout>
+
+                        <android.support.v4.widget.Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/margin_small" />
+
+
+                        <LinearLayout
+                            android:id="@+id/layout_cardtype"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <com.app.infideap.stylishwidget.view.ATextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/source_account"
+                                android:textAppearance="@style/TextStyle.Medium"
+                                />
+
+                            <android.support.v4.widget.Space
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/margin_xsmall" />
+
+                            <Spinner
+                                android:id="@+id/spinner_account"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                style="@style/Widget.AppCompat.Spinner.Underlined"
+                                />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layout_destinationAccount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <com.app.infideap.stylishwidget.view.ATextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/destination_account"
+                                android:textAppearance="@style/TextStyle.Medium"
+                                />
+
+                            <android.support.v4.widget.Space
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/margin_xsmall" />
+
+                            <com.app.infideap.stylishwidget.view.AEditText
+                                android:id="@+id/et_destinationAccount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"
+                                />
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/layout_desc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <com.app.infideap.stylishwidget.view.ATextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/description"
+                                android:textAppearance="@style/TextStyle.Medium"
+                                />
+
+                            <android.support.v4.widget.Space
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/margin_xsmall" />
+
+                            <com.app.infideap.stylishwidget.view.AEditText
+                                android:id="@+id/et_description"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="text"
+                                />
+
+                        </LinearLayout>
+
+
+
+                        <android.support.v4.widget.Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/margin_small" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </android.support.v4.widget.NestedScrollView>
+
+            <com.app.infideap.stylishwidget.view.ATextView
+                android:id="@+id/button_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                style="@style/Button.Success.Fill"
+                android:text="@string/proceed"
+                />
+
+            <FrameLayout
+                android:visibility="gone"
+                android:id="@+id/layout_progress"
+                android:background="@color/colorWhiteTransparent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <rezkyaulia.com.bamms_project.view.ALoadingView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </FrameLayout>
+
+        </RelativeLayout>
+
+
+
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

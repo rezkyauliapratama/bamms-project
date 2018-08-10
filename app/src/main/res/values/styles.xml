@@ -9,6 +9,8 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:colorBackground">@color/background_material_white</item>
         <item name="android:colorForeground">@color/foreground_light</item>
+        <item name="coordinatorLayoutStyle">@style/Widget.Design.CoordinatorLayout</item>
+        <item name="cardViewStyle">@style/CardView</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

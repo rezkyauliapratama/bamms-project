@@ -25,8 +25,8 @@ public class NetworkModule {
     @Provides
     @NetworkInfo
     String provideBaseUrl(){
-//        return "http://156.67.221.206/dont-do-framework/public/v1/";
-        return "http://10.0.2.2/dont-do-framework/public/v1/";
+        return "http://156.67.221.206/bamms-api/public/v1";
+//        return "http://10.0.2.2/bamms-api/public/v1";
     }
 
     @Provides

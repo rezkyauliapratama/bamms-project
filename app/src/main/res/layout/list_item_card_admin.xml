@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal" android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_normal"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
+            <com.app.infideap.stylishwidget.view.ATextView
+                android:id="@+id/tv_cardName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack_1000"
+                android:text="@string/cardname"
+                android:textAppearance="@style/TextStyle.Small"/>
+
+            <com.app.infideap.stylishwidget.view.ATextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack_1000"
+                android:text="@string/full_name"
+                android:textAppearance="@style/TextStyle.Small"/>
+
+            <com.app.infideap.stylishwidget.view.ATextView
+                android:id="@+id/tv_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack_1000"
+                android:text="@string/address"
+                android:textAppearance="@style/TextStyle.Small"/>
+
+            <com.app.infideap.stylishwidget.view.ATextView
+                android:id="@+id/tv_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack_1000"
+                android:text="@string/phone"
+                android:textAppearance="@style/TextStyle.Small"/>
+
+            <com.app.infideap.stylishwidget.view.ATextView
+                android:id="@+id/tv_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack_1000"
+                android:text="@string/balance"
+                android:textStyle="bold"
+                android:layout_gravity="center_vertical"
+                android:textAppearance="@style/TextStyle.Small"
+                />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

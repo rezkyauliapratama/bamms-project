@@ -7,61 +7,32 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class LoginRequest {
-    String name;
-    String email;
-    String token;
-    @SerializedName("sign_id")
-    String signId;
+    String username;
+    String password;
+
 
     public LoginRequest() {
 
     }
 
-    public LoginRequest(String name, String email, String token, String signId) {
-        this.name = name;
-        this.email = email;
-        this.token = token;
-        this.signId = signId;
+    public LoginRequest(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
-    public LoginRequest(String name, String email, String signId) {
-        this.name = name;
-        this.email = email;
-        this.signId = signId;
-
-
+    public String getUsername() {
+        return username;
     }
 
-
-    public String getName() {
-        return name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getPassword() {
+        return password;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public String getSignId() {
-        return signId;
-    }
-
-    public void setSignId(String signId) {
-        this.signId = signId;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

@@ -49,8 +49,6 @@ public class BaseApplication extends MultiDexApplication {
                 .dataModule(new DataModule(dbName))
                 .build();
 
-        AppCompatDelegate.setDefaultNightMode(
-                AppCompatDelegate.MODE_NIGHT_YES);
     }
 
     public static BaseApplication get(Context context) {

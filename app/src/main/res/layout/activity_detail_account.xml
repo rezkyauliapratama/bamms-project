@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="rezkyaulia.com.bamms_project.ui.detail.DetailViewModel" />
+
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:theme="@style/AppTheme"
+        android:background="@color/background_material_white"
+        tools:context=".ui.main.MainActivity">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background_material_white"
+            app:elevation="4dp">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:background="@color/background_material_white"
+                android:layout_height="?android:attr/actionBarSize">
+
+                <LinearLayout
+                    android:id="@+id/linearLayout_toolbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView_back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tint="@color/icon"
+                        android:paddingRight="@dimen/margin_normal"
+                        android:src="@drawable/ic_arrow_back"/>
+
+                    <com.app.infideap.stylishwidget.view.ATextView
+                        android:id="@+id/textView_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:layout_centerVertical="true"
+                        android:text="@string/app_name"
+                        android:textAppearance="@style/TextStyle.Small"
+                        android:textColor="@color/primaryTextColor" />
+
+                </LinearLayout>
+            </android.support.v7.widget.Toolbar>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="@dimen/margin_small"
+                android:layout_marginLeft="@dimen/margin_normal"
+                android:layout_marginRight="@dimen/margin_normal"
+                android:layout_marginBottom="@dimen/margin_normal"
+                app:cardBackgroundColor="@color/colorPrimary"
+                app:cardUseCompatPadding="true"
+                tools:style="@style/CardView">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/margin_normal"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/iv_icon"
+                            android:layout_width="@dimen/size_image_64dp"
+                            android:layout_height="@dimen/size_image_64dp"
+                            android:layout_marginRight="@dimen/margin_small"
+                            android:src="@drawable/ic_mastercard"
+                            />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center_vertical"
+                            android:layout_weight="1">
+                            <com.app.infideap.stylishwidget.view.ATextView
+                                android:id="@+id/tv_cardName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/colorWhite"
+                                android:text="@string/cardname"
+                                android:textAppearance="@style/TextStyle.Medium"
+                                />
+                            <com.app.infideap.stylishwidget.view.ATextView
+                                android:id="@+id/tv_cardStaths"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/status"
+                                android:textAppearance="@style/TextStyle.Small"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <com.app.infideap.stylishwidget.view.ATextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/balance"
+                        android:textAppearance="@style/TextStyle.Small"
+                        android:textColor="@color/colorWhite"
+                        android:layout_gravity="right"
+                        />
+
+                    <com.app.infideap.stylishwidget.view.ATextView
+                        android:id="@+id/tv_totalBalance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:text="@string/hint_totalbalance"
+                        android:textAppearance="@style/TextStyle.Display2"
+                        android:textColor="@color/colorWhite"
+                        />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+        </android.support.design.widget.AppBarLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <com.app.infideap.stylishwidget.view.ATextView
+                android:id="@+id/tv_information"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/last_7_days_transaction"
+                android:textAppearance="@style/TextStyle.Small"
+                android:paddingLeft="@dimen/margin_normal"
+                android:textColor="@color/primaryTextColor"/>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_transactionList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:listitem="@layout/list_item_transaction"/>
+
+                <com.app.infideap.stylishwidget.view.ATextView
+                    android:id="@+id/tv_noData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/no_transaction_data"
+                    android:visibility="gone"
+                    android:textAppearance="@style/TextStyle.Small"/>
+            </FrameLayout>
+        </LinearLayout>
+
+
+        <FrameLayout
+            android:visibility="gone"
+            android:id="@+id/layout_progress"
+            android:background="@color/colorWhiteTransparent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <rezkyaulia.com.bamms_project.view.ALoadingView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </FrameLayout>
+
+        <io.github.kobakei.materialfabspeeddial.FabSpeedDial
+            android:id="@+id/fab"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:fab_menu="@menu/fab"/>
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

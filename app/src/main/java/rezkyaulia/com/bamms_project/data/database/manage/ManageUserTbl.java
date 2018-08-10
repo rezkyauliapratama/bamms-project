@@ -74,4 +74,15 @@ public class ManageUserTbl implements TransactionInterface<UserTbl> {
 
         return 0;
     }
+
+    public String getUserKey(){
+        List<UserTbl> userTbls = dao.loadAll();
+        if (userTbls.size() > 0){
+            return userTbls.get(0).getUserKey();
+        }
+
+        return null;
+    }
+
+
 }

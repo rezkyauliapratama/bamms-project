@@ -5,7 +5,12 @@ import android.arch.lifecycle.ViewModel;
 import dagger.Binds;
 import dagger.Module;
 import dagger.multibindings.IntoMap;
-import rezkyaulia.com.bamms_project.MainViewModel;
+import rezkyaulia.com.bamms_project.ui.MainAdminViewModel;
+import rezkyaulia.com.bamms_project.ui.main.MainViewModel;
+import rezkyaulia.com.bamms_project.ui.detail.DetailViewModel;
+import rezkyaulia.com.bamms_project.ui.login.LoginViewModel;
+import rezkyaulia.com.bamms_project.ui.register.RegisterViewModel;
+import rezkyaulia.com.bamms_project.ui.transaction.TransactionViewModel;
 
 /**
  * Created by Rezky Aulia Pratama on 5/6/18.
@@ -18,5 +23,29 @@ public abstract class ViewModelModule {
     @ViewModelKey(MainViewModel.class)
     abstract ViewModel bindMainViewModel(MainViewModel mainViewModel);
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(DetailViewModel.class)
+    abstract ViewModel bindDetailViewModel(DetailViewModel detailViewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(LoginViewModel.class)
+    abstract ViewModel bindLoginViewModel(LoginViewModel loginViewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(RegisterViewModel.class)
+    abstract ViewModel bindRegisterViewModel(RegisterViewModel registerViewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(TransactionViewModel.class)
+    abstract ViewModel bindCreditViewModel(TransactionViewModel creditViewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MainAdminViewModel.class)
+    abstract ViewModel bindMainAdminViewModel(MainAdminViewModel mainAdminViewModel);
 
 }
